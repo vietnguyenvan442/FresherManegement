@@ -1,0 +1,34 @@
+package com.example.fresher_management.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "test")
+public class Test {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String title;
+	private Date start_time;
+	private Time period;
+	
+	@JoinColumn(name = "rank_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Rank rank;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "test", cascade = CascadeType.ALL)
+	private List<Result> listResult;
+}

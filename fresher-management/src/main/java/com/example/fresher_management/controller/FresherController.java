@@ -48,7 +48,7 @@ public class FresherController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         // Kiểm tra nếu người dùng hiện tại là Admin hoặc Manager
-        if (userDetails.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN") || role.getAuthority().equals("ROLE_MANAGER"))) {
+        if (userDetails.getAuthorities().stream().anyMatch(role -> role.getAuthority().equals("ADMIN") || role.getAuthority().equals("MANAGER"))) {
             return fresherService.addFresher(fresherDto);
         } else {
             throw new RuntimeException("Unauthorized access");

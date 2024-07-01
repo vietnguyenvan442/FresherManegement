@@ -13,15 +13,7 @@ public class CenterService {
     @Autowired
     private CenterRepository centerRepository;
 
-    @Autowired
-    private ManagerRepository managerRepository;
-
-    @Autowired
-    private AreaRepository areaRepository;
-
-    public Center addCenter(Center center, int managerId, int areaId) {
-        center.setManager(managerRepository.findById(managerId).orElse(null));
-        center.setArea(areaRepository.findById(areaId).orElse(null));
+    public Center addCenter(Center center) {
         return centerRepository.save(center);
     }
 }

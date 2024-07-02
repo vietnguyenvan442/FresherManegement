@@ -13,7 +13,10 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
+					"raw": {
+						"username": "admin",
+						"password": "123"
+						},
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,7 +54,20 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"New Center\",\r\n    \"sdt\": \"123456789\",\r\n    \"address\": \"123 Main St\",\r\n    \"email\": \"center@example.com\",\r\n    \"description\": \"This is a new center\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 1\r\n    },\r\n    \"manager\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+					"raw": "{
+						"name": "New Center",
+						"sdt": "123456789",
+						"address": "123 Main St",
+						"email": "center@example.com",
+						"description": "This is a new center",
+						"state": true,
+						"area": {
+							"id": 1
+							},
+						"manager": {
+							"id": 1
+							}
+						}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -14,7 +14,7 @@ public class CenterController {
     @Autowired
     private CenterService centerService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Center> addCenter(@RequestBody Center center) {
         Center newCenter = centerService.addCenter(center);
         return ResponseEntity.ok(newCenter);

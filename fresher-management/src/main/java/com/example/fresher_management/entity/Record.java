@@ -23,17 +23,14 @@ public class Record {
 	private Date start_time;
 	private Date end_time;
 
-	@JsonIgnore
 	@JoinColumn(name = "center_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Center center;
 
-	@JsonIgnore
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "fresher_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private User user;
+	private Fresher fresher;
 
-	@JsonIgnore
 	@JoinColumn(name = "position_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Position position;

@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,12 @@ public class Position {
 	private int id;
 	private String name;
 	private String description;
-	
+
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "position", cascade = CascadeType.ALL)
 	private List<User> listUser;
-	
+
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "position", cascade = CascadeType.ALL)
 	private List<Record> listRecord;
 	

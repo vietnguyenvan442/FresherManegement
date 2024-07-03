@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,11 +18,11 @@ import java.util.List;
 @Table(name = "fresher")
 public class Fresher extends User{
 
-	@JsonIgnore
 	@JoinColumn(name = "language_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Language language;
-	
+
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fresher", cascade = CascadeType.ALL)
-	private List<Course> listCourse;
+	private List<Record> listRecord;
 }

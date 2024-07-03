@@ -37,8 +37,4 @@ public class User implements Serializable{
 	@JoinColumn(name = "position_id")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Position position;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-	private List<Record> listRecord;
-
 }

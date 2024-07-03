@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "a46f2f6a-5e65-4074-bec0-6a0daee6c387",
-		"name": "New Collection",
+		"name": "FresherManagement",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28959500"
 	},
@@ -13,10 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": {
-						"username": "admin",
-						"password": "123"
-						},
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +42,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTgxMTkzNywiaWF0IjoxNzE5ODA4MzM3fQ.vRJEpDwZUOyM2EYm2OFDKpo7Tgtph-LTQXCKgKxIOL8",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk3NTE3MSwiaWF0IjoxNzE5OTc0ODExfQ.aJr7AYa8qmLphA0BjvBF4oUTr3AErrskra0HUOdCET-eDWtzeN8Y0dYoyij7hInflq81e4h0CDAzembA1OQOPQ",
 							"type": "string"
 						}
 					]
@@ -54,8 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-<<<<<<< HEAD
-					"raw": "{\r\n    \"username\": \"fres1\",\r\n    \"password\": \"fres1\",\r\n    \"name\": \"Son\",\r\n    \"dob\": \"12-2-2002\",\r\n    \"cccd\": \"123456\",\r\n    \"sdt\": \"0938277\",\r\n    \"address\": \"HN\",\r\n    \"email\": \"son@gmail.com\",\r\n    \"salary\": \"10\",\r\n    \"state\": true,\r\n    \"languageId\": 1\r\n}",
+					"raw": "{\r\n  \"username\": \"frehs3\",\r\n  \"password\": \"password\",\r\n  \"name\": \"John Doe\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"cccd\": \"123456789\",\r\n  \"sdt\": \"0901234567\",\r\n  \"address\": \"123 Main St\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"salary\": 5000,\r\n  \"state\": true,\r\n  \"language\": {\r\n    \"id\": 3\r\n  }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,22 +91,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"Center 6\",\r\n    \"sdt\": \"0328634\",\r\n    \"address\": \"NY\",\r\n    \"email\": \"c6@example.com\",\r\n    \"description\": \"This is a center 6\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
-=======
-					"raw": "{
-						"name": "New Center",
-						"sdt": "123456789",
-						"address": "123 Main St",
-						"email": "center@example.com",
-						"description": "This is a new center",
-						"state": true,
-						"area": {
-							"id": 1
-							},
-						"manager": {
-							"id": 1
-							}
-						}",
->>>>>>> 88013e24c50668bc9f04d8e57812ec19eb6e5ee7
 					"options": {
 						"raw": {
 							"language": "json"
@@ -228,6 +208,117 @@
 					"path": [
 						"center",
 						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update fresher",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk4ODgwMywiaWF0IjoxNzE5OTg4NDQzfQ.GWK55_NcCA7sdFhphgkwmJKRCBJwWNAS3UT1ItXUE2O6g14rKAMzZpANK-CcAHA7ffqYP6QQe-EkLzZUyT5e_Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"fresh3\",\r\n  \"password\": \"password\",\r\n  \"name\": \"John Doe\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"cccd\": \"123456789\",\r\n  \"sdt\": \"0901234567\",\r\n  \"address\": \"123 Mai\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"salary\": 5000,\r\n  \"state\": true,\r\n  \"language\": {\r\n    \"id\": 3\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fresher/update/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fresher",
+						"update",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete fresher",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk4ODgwMywiaWF0IjoxNzE5OTg4NDQzfQ.GWK55_NcCA7sdFhphgkwmJKRCBJwWNAS3UT1ItXUE2O6g14rKAMzZpANK-CcAHA7ffqYP6QQe-EkLzZUyT5e_Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/fresher/delete/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fresher",
+						"delete",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add fresher to center",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk5NDE2MywiaWF0IjoxNzE5OTkzODAzfQ.MxLtuGexHJBxB8_U0Gw4I5hqLi2GAKnBnPtJ8af05GEkDQJ8RWgBMrVfX4tSTS_9Zv1uMFKhMKdg2x_YtYOaMA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fresher_id\": 17,\r\n    \"center_id\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/center/add/fresher",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"add",
+						"fresher"
 					]
 				}
 			},

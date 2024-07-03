@@ -29,11 +29,13 @@ CREATE TABLE `record` (
   `center_id` int DEFAULT NULL,
   `position_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
+  `fresher_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FKqjpfw47775aqo52iecfvo9v62` (`user_id`),
   KEY `FKikj1nr91w4w9u710ch9v5rwxg` (`center_id`),
-  KEY `FKgsue8hs8n2ab4bk59n5mn7qb8` (`position_id`),
-  KEY `FKqjpfw47775aqo52iecfvo9v62` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKpjcjfnqda4olcdmp5nwk7ch2f` (`fresher_id`),
+  KEY `FKgsue8hs8n2ab4bk59n5mn7qb8` (`position_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +44,7 @@ CREATE TABLE `record` (
 
 LOCK TABLES `record` WRITE;
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
+INSERT INTO `record` VALUES (1,NULL,'2024-07-03',5,1,NULL,17),(2,NULL,'2024-07-03',5,1,NULL,17);
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03  8:26:31
+-- Dump completed on 2024-07-03 15:39:36

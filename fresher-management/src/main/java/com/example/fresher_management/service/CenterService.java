@@ -1,15 +1,15 @@
 package com.example.fresher_management.service;
 
-import com.example.fresher_management.entity.Area;
-import com.example.fresher_management.entity.Center;
-import com.example.fresher_management.entity.Manager;
-import com.example.fresher_management.repository.AreaRepository;
-import com.example.fresher_management.repository.CenterRepository;
-import com.example.fresher_management.repository.ManagerRepository;
+import com.example.fresher_management.dto.RecordDto;
+import com.example.fresher_management.entity.*;
+import com.example.fresher_management.entity.Record;
+import com.example.fresher_management.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +20,13 @@ public class CenterService {
     private CenterRepository centerRepository;
 
     @Autowired
+    private FresherRepository fresherRepository;
+
+    @Autowired
     private AreaRepository areaRepository;
+
+    @Autowired
+    private RecordRepository recordRepository;
 
     @Autowired
     private ManagerRepository managerRepository;
@@ -107,5 +113,21 @@ public class CenterService {
         } else {
             throw new RuntimeException("Center not found with id " + id);
         }
+    }
+
+    @Transactional
+    public Record addRecord(RecordDto recordDto) {
+        Fresher fresher = fresherRepository.findById(recordDto.getFresher_id())
+                .orElseThrow(() -> new RuntimeException("Fresher not found"));
+        Center center = centerRepository.findById(recordDto.getCenter_id())
+                .orElseThrow(() -> new RuntimeException("Center not found"));
+
+        Record record = new Record();
+        record.setFresher(fresher);
+        record.setCenter(center);
+        record.setPosition(fresher.getPosition());
+        record.setStart_time(Date.valueOf(LocalDate.now()));
+
+        return recordRepository.save(record);
     }
 }

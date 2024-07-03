@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,17 +22,18 @@ public class Merger {
 	private int id;
 	private Date date;
 
+	@JsonIgnore
 	@JoinColumn(name = "center_first_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_first;
 
+	@JsonIgnore
 	@JoinColumn(name = "center_second_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_second;
 
+	@JsonIgnore
 	@JoinColumn(name = "center_new_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_new;
-
-	// Constructors, getters, and setters
 }

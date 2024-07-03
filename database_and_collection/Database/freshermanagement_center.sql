@@ -35,7 +35,7 @@ CREATE TABLE `center` (
   PRIMARY KEY (`id`),
   KEY `FK2y8h5v6omi4yjwp3cfe6nh4d0` (`area_id`),
   KEY `FKexkjvhqc1fea7mbntbip67wc2` (`manager_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `center` (
 
 LOCK TABLES `center` WRITE;
 /*!40000 ALTER TABLE `center` DISABLE KEYS */;
+INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'123 HN','This is a new center','center@example.com','Center 5','123456789',_binary '\0',1,8),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
 /*!40000 ALTER TABLE `center` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02  9:44:00
+-- Dump completed on 2024-07-03  8:26:31

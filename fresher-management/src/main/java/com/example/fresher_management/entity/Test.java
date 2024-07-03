@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,8 @@ public class Test {
 	private String title;
 	private Date start_time;
 	private Time period;
-	
+
+	@JsonIgnore
 	@JoinColumn(name = "rank_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Rank rank;

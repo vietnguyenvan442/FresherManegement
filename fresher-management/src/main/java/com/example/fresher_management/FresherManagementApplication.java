@@ -13,11 +13,11 @@ public class FresherManagementApplication {
 		SpringApplication.run(FresherManagementApplication.class, args);
 	}
 
-	//	@Bean
-	//	CommandLineRunner run(UserService userService){
-	//		return args ->{
-	////			userService.saveAdmin();
-	//			userService.saveManager();
-	//		};
-	//	}
+//		@Bean
+//		CommandLineRunner run(UserService userService){
+//			return args ->{
+//	//			userService.saveAdmin();
+//				userService.saveManager();
+//			};
+//		}
 }

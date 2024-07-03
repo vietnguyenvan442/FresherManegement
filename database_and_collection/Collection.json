@@ -35,14 +35,14 @@
 			"response": []
 		},
 		{
-			"name": "add center",
+			"name": "add fresher",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTg4NzM5NCwiaWF0IjoxNzE5ODg3MDM0fQ.yqIbe807IqjbXy9z-RcK4lR2pOgTjyrDx8Jo2CEC3WQHEK7JenMRpDLA2wAryG-HiEKJhfvZU9qkYTotF45FwA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTgxMTkzNywiaWF0IjoxNzE5ODA4MzM3fQ.vRJEpDwZUOyM2EYm2OFDKpo7Tgtph-LTQXCKgKxIOL8",
 							"type": "string"
 						}
 					]
@@ -51,7 +51,46 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"New Center\",\r\n    \"sdt\": \"123456789\",\r\n    \"address\": \"123 Main St\",\r\n    \"email\": \"center@example.com\",\r\n    \"description\": \"This is a new center\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 1\r\n    },\r\n    \"manager\": {\r\n        \"id\": 1\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"username\": \"fres1\",\r\n    \"password\": \"fres1\",\r\n    \"name\": \"Son\",\r\n    \"dob\": \"12-2-2002\",\r\n    \"cccd\": \"123456\",\r\n    \"sdt\": \"0938277\",\r\n    \"address\": \"HN\",\r\n    \"email\": \"son@gmail.com\",\r\n    \"salary\": \"10\",\r\n    \"state\": true,\r\n    \"languageId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/fresher/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"fresher",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add center",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwMjU1NCwiaWF0IjoxNzE5OTAyMTk0fQ.j5yLMuhbYPDs_eGLiRHDi-VoNgP3m_XTdCPYotcsdlaPxDlumX0QR70TXg9IPuYYQ5j5kMtE_hZJaP8NBDfp1g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Center 6\",\r\n    \"sdt\": \"0328634\",\r\n    \"address\": \"NY\",\r\n    \"email\": \"c6@example.com\",\r\n    \"description\": \"This is a center 6\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,6 +107,107 @@
 					"path": [
 						"center",
 						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete center",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwNjIxMSwiaWF0IjoxNzE5OTA1ODUxfQ.XIeBihv6VbVbvRS2OcnDy60DuYXINNO60qAcg1hs-7XLcXIbQ-wKLCURWGm22Ict6q-Rvs5i1GM5YCd2F6IHZw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/center/delete/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"delete",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update center",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwMzM0MSwiaWF0IjoxNzE5OTAyOTgxfQ.T1knVFg3Y0UgYRKJROpiB2EHjboRA6mYcsFyGuI1zMPGwxX1DbQAbRsQTzeoBMXgxmbTlrJFi693rTqiY7rqeQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Center 5\",\r\n    \"sdt\": \"0328634\",\r\n    \"address\": \"NY\",\r\n    \"email\": \"c5@example.com\",\r\n    \"description\": \"This is a center 5\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/center/update/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"update",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list center",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwNzczNCwiaWF0IjoxNzE5OTA3Mzc0fQ.ZgLdIvY67dO2945D37zCTJWcXkdek1j1T6F0v9xfbMlc5Vysy_wKsyKgr7g-MPGlhac_hfU1AXubZaPoDMbnHA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/center/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"center",
+						"list"
 					]
 				}
 			},

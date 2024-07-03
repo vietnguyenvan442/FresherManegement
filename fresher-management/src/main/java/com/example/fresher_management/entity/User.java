@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,8 @@ public class User implements Serializable{
 	private String email;
 	private float salary;
 	private boolean state;
-	
+
+	@JsonIgnore
 	@JoinColumn(name = "position_id")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Position position;

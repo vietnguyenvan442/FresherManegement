@@ -47,24 +47,24 @@ public class UserService {
         userRepository.save(admin);
     }
 
-//    public void saveManager(){
-//        Manager manager = new Manager();
-//        manager.setUsername("manager1");
-//        manager.setPassword(passwordEncoder.encode("123"));
-//        manager.setCccd("01234");
-//        manager.setAddress("HN");
-//        manager.setDob("12-11-2002");
-//        manager.setName("Nguyen V");
-//        manager.setEmail("v@gmail.com");
-//        manager.setSalary(1000);
-//        manager.setSdt("123456");
-//        manager.setState(true);
-//
-//        Position position = positionRepository.findById(3)
-//                .orElseThrow(() -> new RuntimeException("Manager not found"));
-//        manager.setPosition(position);
-//
-//        userRepository.save(manager);
-//    }
+    public void saveManager(){
+        Manager manager = new Manager();
+        manager.setUsername("manager2");
+        manager.setPassword(passwordEncoder.encode("123"));
+        manager.setCccd("01234");
+        manager.setAddress("NY");
+        manager.setDob("12-11-2002");
+        manager.setName("Tran C");
+        manager.setEmail("c@gmail.com");
+        manager.setSalary(1000);
+        manager.setSdt("834928");
+        manager.setState(true);
+
+        Position position = positionRepository.findById(3)
+                .orElseThrow(() -> new RuntimeException("Manager not found"));
+        manager.setPosition(position);
+
+        userRepository.save(manager);
+    }
 
 }

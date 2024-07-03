@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +27,12 @@ public class Center {
 	private String description;
 	private boolean state;
 
+	@JsonIgnore
 	@JoinColumn(name = "area_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Area area;
 
+	@JsonIgnore
 	@JoinColumn(name = "manager_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Manager manager;

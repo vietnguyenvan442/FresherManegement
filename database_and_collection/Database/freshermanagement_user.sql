@@ -37,7 +37,7 @@ CREATE TABLE `user` (
   `position_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKajxjckf0bsbkrsd5qc1kvnee0` (`position_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (5,'HN','01234','12-11-2002','viet@gmail.com','Nguyen Viet','$2a$10$SdfvvnGWtSxgKE10eDOCdedbQuPcFoZMOANHEh9psdzSFf7eXz4eO',100000,'1234567',_binary '','admin',2),(6,'HN','01234','12-11-2002','v@gmail.com','Nguyen V','$2a$10$MjjT3isvFgwym1DCpB9Dgu4x4TPkMns6wLnVRtcFZS2tmzdS/P9uW',1000,'123456',_binary '','manager1',3);
+INSERT INTO `user` VALUES (5,'HN','01234','12-11-2002','viet@gmail.com','Nguyen Viet','$2a$10$SdfvvnGWtSxgKE10eDOCdedbQuPcFoZMOANHEh9psdzSFf7eXz4eO',100000,'1234567',_binary '','admin',2),(8,'HN','01234','12-11-2002','v@gmail.com','Nguyen V','$2a$10$kxbOFJHdjRXB4k5h5hgCZuRmNXuzNMS983vauE92NIY8IpktNygLy',1000,'123456',_binary '','manager1',3),(9,'NY','01234','12-11-2002','c@gmail.com','Tran C','$2a$10$Z43A.DgzyvJGeqCJaMuijef0SEpjo3hyqXTEeY5oVYwHloggwy8zC',1000,'834928',_binary '','manager2',3),(10,'HN','123456','12-2-2002','son@gmail.com','Son','fres1',10,'0938277',_binary '','fres1',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-02  9:44:00
+-- Dump completed on 2024-07-03  8:26:30

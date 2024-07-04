@@ -10,25 +10,38 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecordService {
 
     @Autowired
-    private CenterRepository centerRepository;
+    private CenterService centerService;
 
     @Autowired
-    private FresherRepository fresherRepository;
+    private FresherService fresherService;
 
     @Autowired
     private RecordRepository recordRepository;
 
     @Transactional
     public Record addRecord(RecordDto recordDto) {
-        Fresher fresher = fresherRepository.findById(recordDto.getFresher_id())
-                .orElseThrow(() -> new RuntimeException("Fresher not found"));
-        Center center = centerRepository.findById(recordDto.getCenter_id())
-                .orElseThrow(() -> new RuntimeException("Center not found"));
+        Fresher fresher = fresherService.findById(recordDto.getFresher_id());
+        if (fresher == null) {
+            throw new RuntimeException("Không tìm thấy Fresher");
+        }
+
+        Center center = centerService.findById(recordDto.getCenter_id());
+        if (center == null) {
+            throw new RuntimeException("Không tìm thấy Center");
+        }
+
+        List<Record> latestRecord = recordRepository.findLatestActiveRecordsByFresherId(fresher.getId());
+        if (!latestRecord.isEmpty() && latestRecord.get(0).getEnd_time() == null) {
+            latestRecord.get(0).setEnd_time(Date.valueOf(LocalDate.now()));
+            recordRepository.save(latestRecord.get(0));
+        }
 
         Record record = new Record();
         record.setFresher(fresher);
@@ -38,4 +51,5 @@ public class RecordService {
 
         return recordRepository.save(record);
     }
+
 }

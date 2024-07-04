@@ -1,11 +1,10 @@
 package com.example.fresher_management.repository;
 
-import com.example.fresher_management.entity.User;
+import com.example.fresher_management.entity.Merger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface MergerRepository extends JpaRepository<Merger, Integer> {
 
-    User findByUsername(String username);
 }

@@ -1,6 +1,6 @@
 package com.example.fresher_management.config;
 
-import com.example.fresher_management.filter.JwtRequestFilter;
+import com.example.fresher_management.util.JwtRequestFilter;
 import com.example.fresher_management.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -46,8 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/fresher/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/center/**").hasRole("ADMIN")
+                .antMatchers("/freshers/**").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers("/centers/**").hasRole("ADMIN")
+                .antMatchers("/records/**").hasAnyRole("ADMIN", "MANAGER")
+                .antMatchers("/merger/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

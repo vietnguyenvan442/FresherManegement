@@ -4,15 +4,14 @@ import com.example.fresher_management.entity.Admin;
 import com.example.fresher_management.entity.Manager;
 import com.example.fresher_management.entity.Position;
 import com.example.fresher_management.entity.User;
-import com.example.fresher_management.repository.PositionRepository;
 import com.example.fresher_management.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
     @Autowired
     private UserRepository userRepository;
 
@@ -20,7 +19,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PositionRepository positionRepository;
+    private PositionService positionService;
 
     public User saveUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -60,15 +59,16 @@ public class UserService {
         manager.setSdt("834928");
         manager.setState(true);
 
-        Position position = positionRepository.findById(3)
-                .orElseThrow(() -> new RuntimeException("Manager not found"));
+        Position position = positionService.findById(3);
+        if (position == null) throw new RuntimeException("Manager not found");
         manager.setPosition(position);
 
         userRepository.save(manager);
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User getUserByToken(String token){
+        UserDetailsServiceImpl userDetailsService = new UserDetailsServiceImpl();
+        UserDetails userDetails = userDetailsService.getUserFromToken(token.substring(7));
+        return getUserByUsername(userDetails.getUsername());
     }
-
 }

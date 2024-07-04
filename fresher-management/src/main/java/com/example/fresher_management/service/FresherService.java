@@ -20,45 +20,41 @@ public class FresherService {
     private FresherRepository fresherRepository;
 
     @Autowired
-    private PositionRepository positionRepository;
+    private PositionService positionService;
 
     @Autowired
-    private LanguageRepository languageRepository;
+    private LanguageService languageService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserRepository userRepository;
+    @Transactional
+    public Fresher findById(int id){
+        return fresherRepository.findById(id).orElse(null);
+    }
 
     @Transactional
     public List<Fresher> getAllFreshers() {
         return fresherRepository.findAll();
     }
 
-//    @Transactional
-//    public List<Fresher> getFreshersByCenterId(int centerId) {
-//        return fresherRepository.findByCenterId(centerId);
-//    }
-//
-//    @Transactional
-//    public List<Fresher> getFreshersByCenterIds(List<Integer> centerIds) {
-//        return fresherRepository.findByCenterIdIn(centerIds);
-//    }
+    @Transactional
+    public List<Fresher> getFreshers(int manager_id){
+        return fresherRepository.getFresherByManagerId(manager_id);
+    }
 
     @Transactional
     public Fresher addFresher(Fresher fresher) {
         // Set default position
-        Position defaultPosition = positionRepository.findById(1).orElse(null);
-        fresher.setPosition(defaultPosition);
+        fresher.setPosition(positionService.findById(1));
 
         // Handle language
         if (fresher.getLanguage() != null) {
-            Language existingLanguage = languageRepository.findById(fresher.getLanguage().getId()).orElse(null);
+            Language existingLanguage = languageService.findById(fresher.getLanguage().getId());
             if (existingLanguage != null) {
                 fresher.setLanguage(existingLanguage);
             } else {
-                Language newLanguage = languageRepository.save(fresher.getLanguage());
+                Language newLanguage = languageService.save(fresher.getLanguage());
                 fresher.setLanguage(newLanguage);
             }
         }
@@ -86,11 +82,11 @@ public class FresherService {
         fresher.setState(fresherDetails.isState());
 
         if (fresherDetails.getLanguage() != null) {
-            Language existingLanguage = languageRepository.findById(fresherDetails.getLanguage().getId()).orElse(null);
+            Language existingLanguage = languageService.findById(fresherDetails.getLanguage().getId());
             if (existingLanguage != null) {
                 fresher.setLanguage(existingLanguage);
             } else {
-                Language newLanguage = languageRepository.save(fresherDetails.getLanguage());
+                Language newLanguage = languageService.save(fresherDetails.getLanguage());
                 fresher.setLanguage(newLanguage);
             }
         }

@@ -1,5 +1,6 @@
 package com.example.fresher_management.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,7 @@ public class Manager extends User{
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "manager", cascade = CascadeType.ALL)
     private List<Center> listCenter;
 
-
+    @JsonBackReference
     public List<Center> getManagedCenters() {
         return listCenter;
     }

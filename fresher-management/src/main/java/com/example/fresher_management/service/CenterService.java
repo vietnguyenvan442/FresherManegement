@@ -1,15 +1,11 @@
 package com.example.fresher_management.service;
 
-import com.example.fresher_management.dto.RecordDto;
 import com.example.fresher_management.entity.*;
-import com.example.fresher_management.entity.Record;
 import com.example.fresher_management.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,16 +16,10 @@ public class CenterService {
     private CenterRepository centerRepository;
 
     @Autowired
-    private FresherRepository fresherRepository;
+    private AreaService areaService;
 
     @Autowired
-    private AreaRepository areaRepository;
-
-    @Autowired
-    private RecordRepository recordRepository;
-
-    @Autowired
-    private ManagerRepository managerRepository;
+    private ManagerService managerService;
 
     @Transactional
     public List<Center> getAllCenters() {
@@ -37,28 +27,33 @@ public class CenterService {
     }
 
     @Transactional
+    public Center save(Center center){
+        return centerRepository.save(center);
+    }
+
+    @Transactional
     public Center addCenter(Center center) {
         // Kiểm tra nếu Area đã tồn tại
         if (center.getArea() != null) {
-            Area existingArea = areaRepository.findById(center.getArea().getId()).orElse(null);
+            Area existingArea = areaService.findById(center.getArea().getId());
             if (existingArea != null) {
                 center.setArea(existingArea);
             } else {
-                areaRepository.save(center.getArea());
+                areaService.save(center.getArea());
             }
         }
 
         // Kiểm tra nếu Manager đã tồn tại
         if (center.getManager() != null) {
-            Manager existingManager = managerRepository.findById(center.getManager().getId()).orElse(null);
+            Manager existingManager = managerService.findById(center.getManager().getId());
             if (existingManager != null) {
                 center.setManager(existingManager);
             } else {
-                managerRepository.save(center.getManager());
+                managerService.save(center.getManager());
             }
         }
 
-        return centerRepository.save(center);
+        return save(center);
     }
 
     @Transactional
@@ -77,22 +72,22 @@ public class CenterService {
 
             // Kiểm tra nếu Area đã tồn tại
             if (updatedCenter.getArea() != null) {
-                Area existingArea = areaRepository.findById(updatedCenter.getArea().getId()).orElse(null);
+                Area existingArea = areaService.findById(updatedCenter.getArea().getId());
                 if (existingArea != null) {
                     existingCenter.setArea(existingArea);
                 } else {
-                    areaRepository.save(updatedCenter.getArea());
+                    areaService.save(updatedCenter.getArea());
                     existingCenter.setArea(updatedCenter.getArea());
                 }
             }
 
             // Kiểm tra nếu Manager đã tồn tại
             if (updatedCenter.getManager() != null) {
-                Manager existingManager = managerRepository.findById(updatedCenter.getManager().getId()).orElse(null);
+                Manager existingManager = managerService.findById(updatedCenter.getManager().getId());
                 if (existingManager != null) {
                     existingCenter.setManager(existingManager);
                 } else {
-                    managerRepository.save(updatedCenter.getManager());
+                    managerService.save(updatedCenter.getManager());
                     existingCenter.setManager(updatedCenter.getManager());
                 }
             }
@@ -115,19 +110,9 @@ public class CenterService {
         }
     }
 
+
     @Transactional
-    public Record addRecord(RecordDto recordDto) {
-        Fresher fresher = fresherRepository.findById(recordDto.getFresher_id())
-                .orElseThrow(() -> new RuntimeException("Fresher not found"));
-        Center center = centerRepository.findById(recordDto.getCenter_id())
-                .orElseThrow(() -> new RuntimeException("Center not found"));
-
-        Record record = new Record();
-        record.setFresher(fresher);
-        record.setCenter(center);
-        record.setPosition(fresher.getPosition());
-        record.setStart_time(Date.valueOf(LocalDate.now()));
-
-        return recordRepository.save(record);
+    public Center findById(int id){
+        return centerRepository.findById(id).orElse(null);
     }
 }

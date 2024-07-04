@@ -22,26 +22,24 @@ public class Center {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String address;
+	private String description;
+	private String email;
 	private String name;
 	private String sdt;
-	private String address;
-	private String email;
-	private String description;
 	private boolean state;
 
-	@JsonBackReference
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "center", cascade = CascadeType.ALL)
-	private List<Record> listRecord;
-
-	@JsonIgnore
 	@JoinColumn(name = "area_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Area area;
 
-	@JsonIgnore
 	@JoinColumn(name = "manager_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Manager manager;
+
+	@JsonBackReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "center", cascade = CascadeType.ALL)
+	private List<Record> listRecord;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "center_first", cascade = CascadeType.ALL)
 	private Set<Merger> listMergerFirst; // Change from List<> to Set<>

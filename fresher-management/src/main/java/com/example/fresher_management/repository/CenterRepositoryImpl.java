@@ -1,6 +1,5 @@
 package com.example.fresher_management.repository;
 
-import com.example.fresher_management.entity.Center;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

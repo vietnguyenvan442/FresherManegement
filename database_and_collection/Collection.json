@@ -185,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDA4MzIwNSwiaWF0IjoxNzIwMDgyODQ1fQ.77tgSPfoGwGY208h6jx_4vohl2AWfTXNJ8h0Ie45Xcd4OWBwF7r4Fb612O93rivVvDBUG_73qSVF8PpeiVoBFA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDE0NjIyNSwiaWF0IjoxNzIwMTQ1ODY1fQ.tw4yrrcBR84y0nh_D0yJlE6DZTFu_uG7xvSExdziC6gDQS-1d9Am11zvjugK_wyLJSulAu2YiEgYTNCGcsRmDQ",
 									"type": "string"
 								}
 							]
@@ -209,8 +209,29 @@
 				{
 					"name": "list fresher by manager",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDE1Mzk2MSwiaWF0IjoxNzIwMTUzNjAxfQ.6MBDxKiw2oFnq_H1MQNvQ0I-gm4SopY90DxazYKsGKDM60Aae-LX2lfYFiSECJpzEWqILoFKq7V1zNooAgJRZw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/freshers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"freshers"
+							]
+						}
 					},
 					"response": []
 				}

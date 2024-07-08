@@ -55,6 +55,11 @@ public class FresherServiceImpl implements FresherService {
     @Transactional
     public Fresher addFresher(Fresher fresher) {
         fresherValidate.validateMandatoryFields(fresher);
+        fresherValidate.validateEmailFormat(fresher.getEmail());
+        fresherValidate.validatePhoneNumberFormat(fresher.getSdt());
+        fresherValidate.validateUniqueCCCD(fresher.getCccd());
+        fresherValidate.validateUniqueUsername(fresher.getUsername());
+        fresherValidate.validateUniqueEmail(fresher.getEmail());
 
         // Set default position
         fresher.setPosition(positionService.findById(1));
@@ -78,7 +83,6 @@ public class FresherServiceImpl implements FresherService {
         Fresher fresher = fresherRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
 
-        fresher.setUsername(fresherDetails.getUsername());
         fresher.setPassword(passwordEncoder.encode(fresherDetails.getPassword()));
         fresher.setName(fresherDetails.getName());
         fresher.setDob(fresherDetails.getDob());
@@ -87,7 +91,6 @@ public class FresherServiceImpl implements FresherService {
         fresher.setAddress(fresherDetails.getAddress());
         fresher.setEmail(fresherDetails.getEmail());
         fresher.setSalary(fresherDetails.getSalary());
-        fresher.setState(fresherDetails.isState());
 
         if (fresherDetails.getLanguage() != null) {
             Language existingLanguage = languageService.findById(fresherDetails.getLanguage().getId());

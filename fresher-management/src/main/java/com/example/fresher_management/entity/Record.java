@@ -24,9 +24,9 @@ public class Record {
 	private Date end_time;
 
 	@JsonIgnore
-	@JoinColumn(name = "center_id")
+	@JoinColumn(name = "course_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Center center;
+	private Course course;
 
 	@JsonIgnore
 	@JoinColumn(name = "fresher_id")

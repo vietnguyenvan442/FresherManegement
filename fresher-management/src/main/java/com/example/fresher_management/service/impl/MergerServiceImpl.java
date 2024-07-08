@@ -40,21 +40,4 @@ public class MergerServiceImpl implements MergerService {
 
         return mergerRepository.save(merger);
     }
-
-//    @Transactional
-//    public Merger addMergerFirstToSecond(MergerFirstToSecondDto mergerFirstToSecondDto){
-//        Center center_first = centerService.findById(mergerFirstToSecondDto.getCenter_first_id());
-//        Center center_second = centerService.findById(mergerFirstToSecondDto.getCenter_second_id());
-//
-//        Merger merger = new Merger();
-//        merger.setCenter_first(center_first);
-//        merger.setCenter_second(center_second);
-//        merger.setCenter_new(center_second);
-//        merger.setDate(Date.valueOf(LocalDate.now()));
-//
-//        center_first.setState(false);
-//        centerService.save(center_first);
-//
-//        return mergerRepository.save(merger);
-//    }
 }

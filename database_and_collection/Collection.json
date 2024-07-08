@@ -185,7 +185,15 @@
 							"bearer": [
 								{
 									"key": "token",
+<<<<<<< HEAD
 									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDE0NjIyNSwiaWF0IjoxNzIwMTQ1ODY1fQ.tw4yrrcBR84y0nh_D0yJlE6DZTFu_uG7xvSExdziC6gDQS-1d9Am11zvjugK_wyLJSulAu2YiEgYTNCGcsRmDQ",
+=======
+<<<<<<< HEAD
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDE0NjIyNSwiaWF0IjoxNzIwMTQ1ODY1fQ.tw4yrrcBR84y0nh_D0yJlE6DZTFu_uG7xvSExdziC6gDQS-1d9Am11zvjugK_wyLJSulAu2YiEgYTNCGcsRmDQ",
+=======
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDA4MzIwNSwiaWF0IjoxNzIwMDgyODQ1fQ.77tgSPfoGwGY208h6jx_4vohl2AWfTXNJ8h0Ie45Xcd4OWBwF7r4Fb612O93rivVvDBUG_73qSVF8PpeiVoBFA",
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
+>>>>>>> 4ca28a51f5055086ecfd6875f76c3d7e3d64d492
 									"type": "string"
 								}
 							]
@@ -209,6 +217,10 @@
 				{
 					"name": "list fresher by manager",
 					"request": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 4ca28a51f5055086ecfd6875f76c3d7e3d64d492
 						"auth": {
 							"type": "bearer",
 							"bearer": [
@@ -232,6 +244,7 @@
 								"freshers"
 							]
 						}
+<<<<<<< HEAD
 					},
 					"response": []
 				},
@@ -240,6 +253,12 @@
 					"request": {
 						"method": "GET",
 						"header": []
+=======
+=======
+						"method": "GET",
+						"header": []
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
+>>>>>>> 4ca28a51f5055086ecfd6875f76c3d7e3d64d492
 					},
 					"response": []
 				}

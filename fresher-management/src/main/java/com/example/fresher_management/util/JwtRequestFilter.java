@@ -1,6 +1,10 @@
 package com.example.fresher_management.util;
 
+<<<<<<< HEAD
 import com.example.fresher_management.service.impl.UserDetailsServiceImpl;
+=======
+import com.example.fresher_management.service.UserDetailsServiceImpl;
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

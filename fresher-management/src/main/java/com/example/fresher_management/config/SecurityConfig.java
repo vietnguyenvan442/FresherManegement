@@ -1,7 +1,11 @@
 package com.example.fresher_management.config;
 
 import com.example.fresher_management.util.JwtRequestFilter;
+<<<<<<< HEAD
 import com.example.fresher_management.service.impl.UserDetailsServiceImpl;
+=======
+import com.example.fresher_management.service.UserDetailsServiceImpl;
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

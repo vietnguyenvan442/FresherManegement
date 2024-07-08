@@ -32,10 +32,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public UserDetails getUserFromToken(String token) {
         String username = jwtUtil.getUsernameFromToken(token);
+<<<<<<< HEAD:fresher-management/src/main/java/com/example/fresher_management/service/impl/UserDetailsServiceImpl.java
         if (username == null) {
             throw new ResourceNotFoundException("User not found with token: " + token);
         }
         return loadUserByUsername(username);
+=======
+        if (username != null) {
+            return loadUserByUsername(username);
+        }
+        return null;
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f:fresher-management/src/main/java/com/example/fresher_management/service/UserDetailsServiceImpl.java
     }
 
 }

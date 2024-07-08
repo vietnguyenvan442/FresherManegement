@@ -24,7 +24,11 @@ public class Record {
 	private Date end_time;
 
 	@JsonIgnore
+<<<<<<< HEAD
 	@JoinColumn(name = "course_id")
+=======
+	@JoinColumn(name = "center_id")
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Course course;
 

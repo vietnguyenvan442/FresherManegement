@@ -39,7 +39,11 @@ public class Center {
 
 	@JsonBackReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "center", cascade = CascadeType.ALL)
+<<<<<<< HEAD
 	private List<Course> listCourse;
+=======
+	private List<Record> listRecord;
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "center_first", cascade = CascadeType.ALL)
 	private Set<Merger> listMergerFirst; // Change from List<> to Set<>

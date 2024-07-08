@@ -1,7 +1,17 @@
 package com.example.fresher_management.controller;
 
+<<<<<<< HEAD
 import com.example.fresher_management.entity.*;
 import com.example.fresher_management.service.CenterService;
+=======
+import com.example.fresher_management.dto.MergerDto;
+import com.example.fresher_management.dto.RecordDto;
+import com.example.fresher_management.entity.*;
+import com.example.fresher_management.entity.Record;
+import com.example.fresher_management.service.CenterService;
+import com.example.fresher_management.service.RecordService;
+import com.example.fresher_management.service.UserDetailsServiceImpl;
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +26,15 @@ public class CenterController {
     @Autowired
     private CenterService centerService;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private RecordService recordService;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+>>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
     @GetMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Center>> getAllCenters() {

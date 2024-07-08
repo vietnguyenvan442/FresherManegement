@@ -17,8 +17,7 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Transactional
     public Language findById(int id){
-        return languageRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Language not found with id " + id));
+        return languageRepository.findById(id).orElse(null);
     }
 
     @Transactional

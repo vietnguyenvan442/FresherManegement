@@ -28,6 +28,6 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Transactional
     public Manager findById(int id) {
-        return managerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Manager not found with id " + id));
+        return managerRepository.findById(id).orElse(null);
     }
 }

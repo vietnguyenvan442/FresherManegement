@@ -1,7 +1,6 @@
 package com.example.fresher_management.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,16 +36,19 @@ public class Center {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Manager manager;
 
-	@JsonBackReference
+	@JsonBackReference(value = "center-course")
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "center", cascade = CascadeType.ALL)
 	private List<Course> listCourse;
 
+	@JsonBackReference(value = "center-merger-first")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "center_first", cascade = CascadeType.ALL)
-	private Set<Merger> listMergerFirst; // Change from List<> to Set<>
+	private Set<Merger> listMergerFirst;
 
+	@JsonBackReference(value = "center-merger-second")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "center_second", cascade = CascadeType.ALL)
-	private Set<Merger> listMergerSecond; // Change from List<> to Set<>
+	private Set<Merger> listMergerSecond;
 
+	@JsonBackReference(value = "center-merger-new")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "center_new", cascade = CascadeType.ALL)
-	private Set<Merger> listMergerNew; // Change from List<> to Set<>
+	private Set<Merger> listMergerNew;
 }

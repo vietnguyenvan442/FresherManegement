@@ -13,15 +13,7 @@ import java.util.List;
 @Table(name = "manager")
 public class Manager extends User{
 
+    @JsonBackReference
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "manager", cascade = CascadeType.ALL)
     private List<Center> listCenter;
-
-    @JsonBackReference
-    public List<Center> getManagedCenters() {
-        return listCenter;
-    }
-
-    public void setManagedCenters(List<Center> managedCenters) {
-        this.listCenter = managedCenters;
-    }
 }

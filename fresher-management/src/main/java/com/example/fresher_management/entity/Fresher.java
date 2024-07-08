@@ -22,7 +22,11 @@ public class Fresher extends User{
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Language language;
 
-	@JsonBackReference
+	@JsonBackReference(value = "fresher-record")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fresher", cascade = CascadeType.ALL)
 	private List<Record> listRecord;
+
+	@JsonBackReference(value = "fresher-result")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fresher", cascade = CascadeType.ALL)
+	private List<Result> listResult;
 }

@@ -1,18 +1,16 @@
 package com.example.fresher_management.repository;
 
-import com.example.fresher_management.entity.Center;
+import com.example.fresher_management.entity.Result;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface CenterRepository extends JpaRepository<Center, Integer>, CustomCenterRepository {
+public interface ResultRepository extends JpaRepository<Result, Integer> {
 
-    Optional<Center> findByEmail(String email);
-
-    Optional<Center> findBySdt(String sdt);
+    @Query("SELECT r FROM Result r WHERE r.fresher.id = :fresher_id")
+    List<Result> getResultsByFresher(@Param("fresher_id") int fresher_id);
 }

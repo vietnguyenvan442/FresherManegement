@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/freshers/**").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/centers/**").hasRole("ADMIN")
                 .antMatchers("/records/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/merger/**").hasRole("ADMIN")
+                .antMatchers("/mergers/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

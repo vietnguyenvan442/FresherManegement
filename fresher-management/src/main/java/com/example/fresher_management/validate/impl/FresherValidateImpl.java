@@ -5,9 +5,11 @@ import com.example.fresher_management.exception.ValidationException;
 import com.example.fresher_management.repository.FresherRepository;
 import com.example.fresher_management.validate.FresherValidate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
 
+@Component
 public class FresherValidateImpl implements FresherValidate {
 
     @Autowired
@@ -40,20 +42,6 @@ public class FresherValidateImpl implements FresherValidate {
         }
     }
 
-    public void validateEmailFormat(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        if (!Pattern.matches(emailRegex, email)) {
-            throw new ValidationException("Invalid email format");
-        }
-    }
-
-    public void validatePhoneNumberFormat(String phoneNumber) {
-        String phoneRegex = "^\\d{10}$";
-        if (!Pattern.matches(phoneRegex, phoneNumber)) {
-            throw new ValidationException("Invalid phone number format");
-        }
-    }
-
     public void validateUniqueUsername(String username) {
         if (fresherRepository.findByUsername(username).isPresent()) {
             throw new ValidationException("Username already exists");
@@ -67,7 +55,7 @@ public class FresherValidateImpl implements FresherValidate {
     }
 
     public void validateUniqueEmail(String email) {
-        if (fresherRepository.findByCccd(email).isPresent()) {
+        if (fresherRepository.findByEmail(email).isPresent()) {
             throw new ValidationException("Email already exists");
         }
     }

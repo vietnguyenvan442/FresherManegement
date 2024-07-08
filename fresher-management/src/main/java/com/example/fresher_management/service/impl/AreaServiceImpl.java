@@ -16,18 +16,21 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     private AreaRepository areaRepository;
 
+    @Override
     @Transactional
     public List<Area> getAllAreas() {
         return areaRepository.findAll();
     }
 
+    @Override
     @Transactional
     public Area save(Area area) {
         return areaRepository.save(area);
     }
 
+    @Override
     @Transactional
     public Area findById(int id) {
-        return areaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Area not found with id " + id));
+        return areaRepository.findById(id).orElse(null);
     }
 }

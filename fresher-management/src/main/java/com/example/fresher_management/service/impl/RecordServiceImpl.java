@@ -42,7 +42,7 @@ public class RecordServiceImpl implements RecordService {
 
         Record record = new Record();
         record.setFresher(fresher);
-        record.setCenter(center);
+//        record.setCenter(center);
         record.setPosition(fresher.getPosition());
         record.setStart_time(Date.valueOf(LocalDate.now()));
 

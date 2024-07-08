@@ -8,6 +8,9 @@ import com.example.fresher_management.repository.CenterRepository;
 import com.example.fresher_management.service.AreaService;
 import com.example.fresher_management.service.CenterService;
 import com.example.fresher_management.service.ManagerService;
+import com.example.fresher_management.validate.CenterValidate;
+import com.example.fresher_management.validate.EmailFormatValidate;
+import com.example.fresher_management.validate.PhoneNumberFormatValidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,15 @@ public class CenterServiceImpl implements CenterService {
     @Autowired
     private ManagerService managerService;
 
+    @Autowired
+    private CenterValidate centerValidate;
+
+    @Autowired
+    private PhoneNumberFormatValidate phoneNumberFormatValidate;
+
+    @Autowired
+    private EmailFormatValidate emailFormatValidate;
+
     @Transactional
     public List<Center> getAllCenters() {
         return centerRepository.findAll();
@@ -39,22 +51,24 @@ public class CenterServiceImpl implements CenterService {
 
     @Transactional
     public Center addCenter(Center center) {
-        if (center.getArea() != null) {
-            Area existingArea = areaService.findById(center.getArea().getId());
-            if (existingArea != null) {
-                center.setArea(existingArea);
-            } else {
-                areaService.save(center.getArea());
-            }
+        centerValidate.validateMandatoryFields(center);
+        phoneNumberFormatValidate.validatePhoneNumberFormat(center.getSdt());
+        emailFormatValidate.validateEmailFormat(center.getEmail());
+        centerValidate.validateUniqueEmail(center.getEmail());
+        centerValidate.validateUniquePhongNumber(center.getSdt());
+
+        Area existingArea = areaService.findById(center.getArea().getId());
+        if (existingArea != null) {
+            center.setArea(existingArea);
+        } else {
+            areaService.save(center.getArea());
         }
 
-        if (center.getManager() != null) {
-            Manager existingManager = managerService.findById(center.getManager().getId());
-            if (existingManager != null) {
-                center.setManager(existingManager);
-            } else {
-                managerService.save(center.getManager());
-            }
+        Manager existingManager = managerService.findById(center.getManager().getId());
+        if (existingManager != null) {
+            center.setManager(existingManager);
+        } else {
+            managerService.save(center.getManager());
         }
 
         return save(center);
@@ -65,12 +79,26 @@ public class CenterServiceImpl implements CenterService {
         Optional<Center> optionalCenter = centerRepository.findById(id);
         if (optionalCenter.isPresent()) {
             Center existingCenter = optionalCenter.get();
-            existingCenter.setName(updatedCenter.getName());
-            existingCenter.setSdt(updatedCenter.getSdt());
-            existingCenter.setAddress(updatedCenter.getAddress());
-            existingCenter.setEmail(updatedCenter.getEmail());
-            existingCenter.setDescription(updatedCenter.getDescription());
-            existingCenter.setState(updatedCenter.isState());
+
+            if (updatedCenter.getName() != null && !existingCenter.getName().equals(updatedCenter.getName())){
+                existingCenter.setName(updatedCenter.getName());
+            }
+            if (updatedCenter.getSdt() != null && !existingCenter.getSdt().equals(updatedCenter.getSdt())){
+                phoneNumberFormatValidate.validatePhoneNumberFormat(updatedCenter.getSdt());
+                centerValidate.validateUniquePhongNumber(updatedCenter.getSdt());
+                existingCenter.setSdt(updatedCenter.getSdt());
+            }
+            if (updatedCenter.getAddress() != null && !existingCenter.getAddress().equals(updatedCenter.getAddress())){
+                existingCenter.setAddress(updatedCenter.getAddress());
+            }
+            if (updatedCenter.getEmail() != null && !existingCenter.getEmail().equals(updatedCenter.getEmail())){
+                emailFormatValidate.validateEmailFormat(updatedCenter.getEmail());
+                centerValidate.validateUniqueEmail(updatedCenter.getEmail());
+                existingCenter.setEmail(updatedCenter.getEmail());
+            }
+            if (updatedCenter.getDescription() != null && !existingCenter.getDescription().equals(updatedCenter.getDescription())){
+                existingCenter.setDescription(updatedCenter.getDescription());
+            }
 
             if (updatedCenter.getArea() != null) {
                 Area existingArea = areaService.findById(updatedCenter.getArea().getId());

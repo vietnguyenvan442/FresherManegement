@@ -24,7 +24,7 @@ public class Test {
 	private int id;
 	private String title;
 	private Date start_time;
-	private Time period;
+	private int period;
 
 	@JsonIgnore
 	@JoinColumn(name = "rank_id")

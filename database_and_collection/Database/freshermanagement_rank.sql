@@ -27,7 +27,7 @@ CREATE TABLE `rank` (
   `description` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `rank` (
 
 LOCK TABLES `rank` WRITE;
 /*!40000 ALTER TABLE `rank` DISABLE KEYS */;
+INSERT INTO `rank` VALUES (1,NULL,'1'),(2,NULL,'2'),(3,NULL,'3');
 /*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:36
+-- Dump completed on 2024-07-08 15:49:09

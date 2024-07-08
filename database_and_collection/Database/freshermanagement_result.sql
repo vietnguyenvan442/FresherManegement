@@ -26,9 +26,13 @@ CREATE TABLE `result` (
   `id` int NOT NULL AUTO_INCREMENT,
   `point` float NOT NULL,
   `test_id` int DEFAULT NULL,
+  `end_test` datetime DEFAULT NULL,
+  `start_test` datetime DEFAULT NULL,
+  `fresher_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FKgl2xou1u7d6jrri2k1v85npw3` (`fresher_id`),
   KEY `FKsyvhlvlv6k1d4gkqvu12rha0j` (`test_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +41,7 @@ CREATE TABLE `result` (
 
 LOCK TABLES `result` WRITE;
 /*!40000 ALTER TABLE `result` DISABLE KEYS */;
+INSERT INTO `result` VALUES (1,8,6,'2024-06-20 09:00:00','2024-06-01 08:00:00',17),(2,7,7,'2024-07-15 09:30:00','2024-07-15 08:00:00',17),(3,9,8,'2024-08-01 10:00:00','2024-08-01 08:00:00',17);
 /*!40000 ALTER TABLE `result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:35
+-- Dump completed on 2024-07-08 15:49:09

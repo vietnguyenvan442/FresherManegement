@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `test`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `period` time DEFAULT NULL,
+  `period` int DEFAULT NULL,
   `start_time` date DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `rank_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKf40k4y4x3i52fdg3e7nqx4fhh` (`rank_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (6,60,'2020-06-01','Thuat toan',1),(7,90,'2020-06-01','code',2),(8,120,'2020-06-01','Thuyet trinh',3);
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:35
+-- Dump completed on 2024-07-08 15:49:09

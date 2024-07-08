@@ -44,7 +44,7 @@ CREATE TABLE `center` (
 
 LOCK TABLES `center` WRITE;
 /*!40000 ALTER TABLE `center` DISABLE KEYS */;
-INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'123 HN','This is a new center','center@example.com','Center 5','123456789',_binary '\0',1,8),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
+INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'NY','This is a center 5','c5@example.com','Center5','0328634564',_binary '',2,9),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
 /*!40000 ALTER TABLE `center` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:36
+-- Dump completed on 2024-07-08 15:49:08

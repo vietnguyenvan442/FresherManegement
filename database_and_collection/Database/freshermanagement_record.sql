@@ -26,16 +26,16 @@ CREATE TABLE `record` (
   `id` int NOT NULL AUTO_INCREMENT,
   `end_time` date DEFAULT NULL,
   `start_time` date DEFAULT NULL,
-  `center_id` int DEFAULT NULL,
   `position_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `fresher_id` int DEFAULT NULL,
+  `course_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKqjpfw47775aqo52iecfvo9v62` (`user_id`),
-  KEY `FKikj1nr91w4w9u710ch9v5rwxg` (`center_id`),
+  KEY `FKgkqa95wcbbcd9xyi2mlnsyc6c` (`course_id`),
   KEY `FKpjcjfnqda4olcdmp5nwk7ch2f` (`fresher_id`),
   KEY `FKgsue8hs8n2ab4bk59n5mn7qb8` (`position_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `record` (
 
 LOCK TABLES `record` WRITE;
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
-INSERT INTO `record` VALUES (1,NULL,'2024-07-03',5,1,NULL,17),(2,NULL,'2024-07-03',5,1,NULL,17);
+INSERT INTO `record` VALUES (1,'2024-07-04','2024-07-03',1,NULL,17,1),(2,NULL,'2024-07-03',1,NULL,17,1),(3,'2024-07-04','2024-07-04',1,NULL,17,1),(4,'2024-07-04','2024-07-04',1,NULL,17,1),(5,NULL,'2024-07-04',1,NULL,17,1);
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:36
+-- Dump completed on 2024-07-08 15:49:09

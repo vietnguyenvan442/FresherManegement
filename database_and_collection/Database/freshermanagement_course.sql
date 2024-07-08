@@ -29,11 +29,9 @@ CREATE TABLE `course` (
   `name` varchar(255) DEFAULT NULL,
   `start_time` date DEFAULT NULL,
   `center_id` int DEFAULT NULL,
-  `fresher_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKt3ghp7629iiejx65tf4cc4cun` (`center_id`),
-  KEY `FKrn9bpqhuur62i93e9jhlm9gpp` (`fresher_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKt3ghp7629iiejx65tf4cc4cun` (`center_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +40,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
+INSERT INTO `course` VALUES (1,NULL,'2024-06-01','Dao tao fresher VMO','2024-08-01',5);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 15:39:35
+-- Dump completed on 2024-07-08 15:49:10

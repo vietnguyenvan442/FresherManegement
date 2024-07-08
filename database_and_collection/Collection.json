@@ -78,7 +78,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk3NTE3MSwiaWF0IjoxNzE5OTc0ODExfQ.aJr7AYa8qmLphA0BjvBF4oUTr3AErrskra0HUOdCET-eDWtzeN8Y0dYoyij7hInflq81e4h0CDAzembA1OQOPQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwODUwOSwiaWF0IjoxNzIwNDA4MTQ5fQ.KkJVagWG80KP2q9exOei_Ou4oO58uqhdX4nFh8jnf88iHsk3kG6hHEshUUFw9cO8S7uC6WypAQv-9URnKM8VHA",
 									"type": "string"
 								}
 							]
@@ -116,7 +116,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTk4ODgwMywiaWF0IjoxNzE5OTg4NDQzfQ.GWK55_NcCA7sdFhphgkwmJKRCBJwWNAS3UT1ItXUE2O6g14rKAMzZpANK-CcAHA7ffqYP6QQe-EkLzZUyT5e_Q",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwODUwOSwiaWF0IjoxNzIwNDA4MTQ5fQ.KkJVagWG80KP2q9exOei_Ou4oO58uqhdX4nFh8jnf88iHsk3kG6hHEshUUFw9cO8S7uC6WypAQv-9URnKM8VHA",
 									"type": "string"
 								}
 							]
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"fresh3\",\r\n  \"password\": \"password\",\r\n  \"name\": \"John Doe\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"cccd\": \"123456789\",\r\n  \"sdt\": \"0901234567\",\r\n  \"address\": \"123 Mai\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"salary\": 5000,\r\n  \"state\": true,\r\n  \"language\": {\r\n    \"id\": 3\r\n  }\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"John\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,11 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-<<<<<<< HEAD
 									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDE0NjIyNSwiaWF0IjoxNzIwMTQ1ODY1fQ.tw4yrrcBR84y0nh_D0yJlE6DZTFu_uG7xvSExdziC6gDQS-1d9Am11zvjugK_wyLJSulAu2YiEgYTNCGcsRmDQ",
-=======
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDA4MzIwNSwiaWF0IjoxNzIwMDgyODQ1fQ.77tgSPfoGwGY208h6jx_4vohl2AWfTXNJ8h0Ie45Xcd4OWBwF7r4Fb612O93rivVvDBUG_73qSVF8PpeiVoBFA",
->>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 									"type": "string"
 								}
 							]
@@ -213,13 +209,12 @@
 				{
 					"name": "list fresher by manager",
 					"request": {
-<<<<<<< HEAD
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDE1Mzk2MSwiaWF0IjoxNzIwMTUzNjAxfQ.6MBDxKiw2oFnq_H1MQNvQ0I-gm4SopY90DxazYKsGKDM60Aae-LX2lfYFiSECJpzEWqILoFKq7V1zNooAgJRZw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwNzMzMiwiaWF0IjoxNzIwNDA2OTcyfQ.8Bi_Cdy2pl_wxqxI2AFLltkQc5lEZFc1X37-giqMr2Rl-rZFhAFuCpCAbRMk0GS6E_AiiJwr71BBXbnnotp-4w",
 									"type": "string"
 								}
 							]
@@ -237,10 +232,14 @@
 								"freshers"
 							]
 						}
-=======
+					},
+					"response": []
+				},
+				{
+					"name": "Score",
+					"request": {
 						"method": "GET",
 						"header": []
->>>>>>> 9f1e8361f333996e63834602545a5a7b55b43b6f
 					},
 					"response": []
 				}
@@ -325,7 +324,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwMzM0MSwiaWF0IjoxNzE5OTAyOTgxfQ.T1knVFg3Y0UgYRKJROpiB2EHjboRA6mYcsFyGuI1zMPGwxX1DbQAbRsQTzeoBMXgxmbTlrJFi693rTqiY7rqeQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDQyMDQ0MSwiaWF0IjoxNzIwNDIwMDgxfQ.hi62BlNkxjmwyxLu0Umz812JXNhAADQ5iOlJt3BJOUvzr64ZzXSBzj82gr2s7OlVtZ7y3DFh8d8Ebn9HhUE8Xw",
 									"type": "string"
 								}
 							]
@@ -334,7 +333,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Center 5\",\r\n    \"sdt\": \"0328634\",\r\n    \"address\": \"NY\",\r\n    \"email\": \"c5@example.com\",\r\n    \"description\": \"This is a center 5\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Center5\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"

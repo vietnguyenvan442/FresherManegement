@@ -17,7 +17,7 @@ public class CenterController {
     private CenterService centerService;
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Center>> getAllCenters(@RequestHeader("Authorization") String token) {
         List<Center> centers = centerService.getAll(token);
         return ResponseEntity.ok(centers);

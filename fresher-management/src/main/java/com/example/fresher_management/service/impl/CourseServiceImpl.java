@@ -24,4 +24,9 @@ public class CourseServiceImpl implements CourseService {
         Course course = findById(id);
         return course.getEnd_time().compareTo(Date.valueOf(LocalDate.now())) < 0;
     }
+
+    @Override
+    public void updateCenterId(int newCenterId, int centerId, Date currentDateTime) {
+        courseRepository.updateCenterId(newCenterId, centerId, currentDateTime);
+    }
 }

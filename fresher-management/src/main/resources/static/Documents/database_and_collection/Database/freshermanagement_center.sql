@@ -16,28 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `fresher`
+-- Table structure for table `center`
 --
 
-DROP TABLE IF EXISTS `fresher`;
+DROP TABLE IF EXISTS `center`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fresher` (
-  `id` int NOT NULL,
-  `language_id` int DEFAULT NULL,
+CREATE TABLE `center` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `address` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `sdt` varchar(255) DEFAULT NULL,
+  `state` bit(1) NOT NULL,
+  `area_id` int DEFAULT NULL,
+  `manager_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK2vk7p2wu3872e0y3rumli5abb` (`language_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FK2y8h5v6omi4yjwp3cfe6nh4d0` (`area_id`),
+  KEY `FKexkjvhqc1fea7mbntbip67wc2` (`manager_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fresher`
+-- Dumping data for table `center`
 --
 
-LOCK TABLES `fresher` WRITE;
-/*!40000 ALTER TABLE `fresher` DISABLE KEYS */;
-INSERT INTO `fresher` VALUES (10,NULL),(11,NULL),(12,1),(13,NULL),(14,NULL),(15,NULL),(16,3),(17,3);
-/*!40000 ALTER TABLE `fresher` ENABLE KEYS */;
+LOCK TABLES `center` WRITE;
+/*!40000 ALTER TABLE `center` DISABLE KEYS */;
+INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'NY','This is a center 5','c5@example.com','Center5','0328634564',_binary '',2,9),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
+/*!40000 ALTER TABLE `center` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:09
+-- Dump completed on 2024-07-09 14:19:56

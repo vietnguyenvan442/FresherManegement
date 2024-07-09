@@ -33,6 +33,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(FresherAlreadyExistsCourseException.class)
+    public ResponseEntity<Object> handleFresherAlreadyExistsCourseException(FresherAlreadyExistsCourseException ex, WebRequest request) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.CONFLICT.value());
+        response.put("error", "Conflict");
+        response.put("message", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> handleValidateException(ValidationException ex, WebRequest request) {
         Map<String, Object> response = new HashMap<>();
@@ -43,8 +53,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(CourseEndedException.class)
+    public ResponseEntity<Object> handleCourseEndedException(CourseEndedException ex, WebRequest request) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.CONFLICT.value());
+        response.put("error", "Conflict");
+        response.put("message", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(ScoresException.class)
-    public ResponseEntity<Object> handleScoresException(ValidationException ex, WebRequest request) {
+    public ResponseEntity<Object> handleScoresException(ScoresException ex, WebRequest request) {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("status", HttpStatus.CONFLICT.value());

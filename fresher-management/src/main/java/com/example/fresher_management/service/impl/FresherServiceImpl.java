@@ -22,7 +22,7 @@ public class FresherServiceImpl implements FresherService {
     private FresherRepository fresherRepository;
 
     @Autowired
-    private PositionService positionService;
+    private RoleService roleService;
 
     @Autowired
     private LanguageService languageService;
@@ -48,7 +48,7 @@ public class FresherServiceImpl implements FresherService {
     @Override
     @Transactional
     public Fresher findById(int id) {
-        return fresherRepository.findById(id)
+        return fresherRepository.findByIdAndStateTrue(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
     }
 
@@ -56,9 +56,9 @@ public class FresherServiceImpl implements FresherService {
     @Transactional
     public List<Fresher> getFreshers(String token) {
         User user = userService.getUserByToken(token.substring(7));
-        if (user.getPosition().getName().equalsIgnoreCase("ADMIN"))
-            return fresherRepository.findAll();
-        else if (user.getPosition().getName().equalsIgnoreCase("MANAGER"))
+        if (user.getRole().getName().equalsIgnoreCase("ADMIN"))
+            return fresherRepository.findByStateTrue();
+        else if (user.getRole().getName().equalsIgnoreCase("MANAGER"))
             return fresherRepository.getFresherByManagerId(user.getId());
         return null;
     }
@@ -74,7 +74,7 @@ public class FresherServiceImpl implements FresherService {
         fresherValidate.validateUniqueEmail(fresher.getEmail());
 
         // Set default position
-        fresher.setPosition(positionService.findById(1));
+        fresher.setRole(roleService.findById(1));
 
         // Handle language
         if (fresher.getLanguage() != null) {
@@ -87,13 +87,14 @@ public class FresherServiceImpl implements FresherService {
             }
         }
 
+        fresher.setPassword(passwordEncoder.encode(fresher.getPassword()));
         return fresherRepository.save(fresher);
     }
 
     @Override
     @Transactional //not update ccccd
     public Fresher updateFresher(int id, Fresher fresherDetails) {
-        Fresher fresher = fresherRepository.findById(id)
+        Fresher fresher = fresherRepository.findByIdAndStateTrue(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
 
         if (fresherDetails.getPassword() != null && !fresher.getPassword().equals(fresherDetails.getPassword())) {

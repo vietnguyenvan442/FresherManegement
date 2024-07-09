@@ -18,29 +18,29 @@ public class CenterController {
 
     @GetMapping("")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<Center>> getAllCenters() {
-        List<Center> centers = centerService.getAllCenters();
+    public ResponseEntity<List<Center>> getAllCenters(@RequestHeader("Authorization") String token) {
+        List<Center> centers = centerService.getAll(token);
         return ResponseEntity.ok(centers);
     }
 
     @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Center> addCenter(@RequestBody Center center) {
-        Center newCenter = centerService.addCenter(center);
+        Center newCenter = centerService.save(center);
         return ResponseEntity.ok(newCenter);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Center> updateCenter(@PathVariable int id, @RequestBody Center center) {
-        Center updatedCenter = centerService.updateCenter(id, center);
+        Center updatedCenter = centerService.updateById(id, center);
         return ResponseEntity.ok(updatedCenter);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteCenter(@PathVariable int id) {
-        centerService.deleteCenter(id);
+        centerService.deleteById(id);
         return ResponseEntity.ok("Success");
     }
 }

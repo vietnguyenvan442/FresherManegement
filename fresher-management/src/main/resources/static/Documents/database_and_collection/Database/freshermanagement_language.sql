@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `test`
+-- Table structure for table `language`
 --
 
-DROP TABLE IF EXISTS `test`;
+DROP TABLE IF EXISTS `language`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `test` (
+CREATE TABLE `language` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `period` int DEFAULT NULL,
-  `start_time` date DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `rank_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKf40k4y4x3i52fdg3e7nqx4fhh` (`rank_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `test`
+-- Dumping data for table `language`
 --
 
-LOCK TABLES `test` WRITE;
-/*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (6,60,'2020-06-01','Thuat toan',1),(7,90,'2020-06-01','code',2),(8,120,'2020-06-01','Thuyet trinh',3);
-/*!40000 ALTER TABLE `test` ENABLE KEYS */;
+LOCK TABLES `language` WRITE;
+/*!40000 ALTER TABLE `language` DISABLE KEYS */;
+INSERT INTO `language` VALUES (1,NULL,'JAVA'),(2,NULL,'.NET'),(3,NULL,'NOTEJS'),(4,NULL,'FLUTTER');
+/*!40000 ALTER TABLE `language` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:09
+-- Dump completed on 2024-07-09 14:19:55

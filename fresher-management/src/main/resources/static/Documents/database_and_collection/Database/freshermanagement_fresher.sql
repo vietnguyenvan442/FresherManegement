@@ -16,28 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `language`
+-- Table structure for table `fresher`
 --
 
-DROP TABLE IF EXISTS `language`;
+DROP TABLE IF EXISTS `fresher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `language` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `fresher` (
+  `id` int NOT NULL,
+  `language_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK2vk7p2wu3872e0y3rumli5abb` (`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `language`
+-- Dumping data for table `fresher`
 --
 
-LOCK TABLES `language` WRITE;
-/*!40000 ALTER TABLE `language` DISABLE KEYS */;
-INSERT INTO `language` VALUES (1,NULL,'JAVA'),(2,NULL,'.NET'),(3,NULL,'NOTEJS'),(4,NULL,'FLUTTER');
-/*!40000 ALTER TABLE `language` ENABLE KEYS */;
+LOCK TABLES `fresher` WRITE;
+/*!40000 ALTER TABLE `fresher` DISABLE KEYS */;
+INSERT INTO `fresher` VALUES (10,1),(11,1),(12,1),(13,2),(14,2),(15,2),(16,3),(17,3);
+/*!40000 ALTER TABLE `fresher` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:10
+-- Dump completed on 2024-07-09 14:19:56

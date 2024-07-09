@@ -3,11 +3,13 @@ package com.example.fresher_management.service.impl;
 import com.example.fresher_management.entity.Area;
 import com.example.fresher_management.entity.Center;
 import com.example.fresher_management.entity.Manager;
+import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.repository.CenterRepository;
 import com.example.fresher_management.service.AreaService;
 import com.example.fresher_management.service.CenterService;
 import com.example.fresher_management.service.ManagerService;
+import com.example.fresher_management.service.UserService;
 import com.example.fresher_management.validate.CenterValidate;
 import com.example.fresher_management.validate.EmailFormatValidate;
 import com.example.fresher_management.validate.PhoneNumberFormatValidate;
@@ -39,18 +41,21 @@ public class CenterServiceImpl implements CenterService {
     @Autowired
     private EmailFormatValidate emailFormatValidate;
 
+    @Autowired
+    private UserService userService;
+
     @Transactional
-    public List<Center> getAllCenters() {
-        return centerRepository.findAll();
+    public List<Center> getAll(String token) {
+        User user = userService.getUserByToken(token.substring(7));
+        if (user.getRole().getName().equalsIgnoreCase("ADMIN"))
+            return centerRepository.findByStateTrue();
+        else if (user.getRole().getName().equalsIgnoreCase("MANAGER"))
+            return centerRepository.getCenterByManagerId(user.getId());
+        return null;
     }
 
     @Transactional
-    public Center save(Center center){
-        return centerRepository.save(center);
-    }
-
-    @Transactional
-    public Center addCenter(Center center) {
+    public Center save(Center center) {
         centerValidate.validateMandatoryFields(center);
         phoneNumberFormatValidate.validatePhoneNumberFormat(center.getSdt());
         emailFormatValidate.validateEmailFormat(center.getEmail());
@@ -71,63 +76,59 @@ public class CenterServiceImpl implements CenterService {
             managerService.save(center.getManager());
         }
 
-        return save(center);
+        center.setState(true);
+        return centerRepository.save(center);
     }
 
     @Transactional
-    public Center updateCenter(int id, Center updatedCenter) {
-        Optional<Center> optionalCenter = centerRepository.findById(id);
-        if (optionalCenter.isPresent()) {
-            Center existingCenter = optionalCenter.get();
+    public Center updateById(int id, Center updatedCenter) {
+        Center existingCenter = findById(id);
 
-            if (updatedCenter.getName() != null && !existingCenter.getName().equals(updatedCenter.getName())){
-                existingCenter.setName(updatedCenter.getName());
-            }
-            if (updatedCenter.getSdt() != null && !existingCenter.getSdt().equals(updatedCenter.getSdt())){
-                phoneNumberFormatValidate.validatePhoneNumberFormat(updatedCenter.getSdt());
-                centerValidate.validateUniquePhongNumber(updatedCenter.getSdt());
-                existingCenter.setSdt(updatedCenter.getSdt());
-            }
-            if (updatedCenter.getAddress() != null && !existingCenter.getAddress().equals(updatedCenter.getAddress())){
-                existingCenter.setAddress(updatedCenter.getAddress());
-            }
-            if (updatedCenter.getEmail() != null && !existingCenter.getEmail().equals(updatedCenter.getEmail())){
-                emailFormatValidate.validateEmailFormat(updatedCenter.getEmail());
-                centerValidate.validateUniqueEmail(updatedCenter.getEmail());
-                existingCenter.setEmail(updatedCenter.getEmail());
-            }
-            if (updatedCenter.getDescription() != null && !existingCenter.getDescription().equals(updatedCenter.getDescription())){
-                existingCenter.setDescription(updatedCenter.getDescription());
-            }
-
-            if (updatedCenter.getArea() != null) {
-                Area existingArea = areaService.findById(updatedCenter.getArea().getId());
-                if (existingArea != null) {
-                    existingCenter.setArea(existingArea);
-                } else {
-                    areaService.save(updatedCenter.getArea());
-                    existingCenter.setArea(updatedCenter.getArea());
-                }
-            }
-
-            if (updatedCenter.getManager() != null) {
-                Manager existingManager = managerService.findById(updatedCenter.getManager().getId());
-                if (existingManager != null) {
-                    existingCenter.setManager(existingManager);
-                } else {
-                    managerService.save(updatedCenter.getManager());
-                    existingCenter.setManager(updatedCenter.getManager());
-                }
-            }
-
-            return centerRepository.save(existingCenter);
-        } else {
-            throw new ResourceNotFoundException("Center not found with id " + id);
+        if (updatedCenter.getName() != null && !existingCenter.getName().equals(updatedCenter.getName())){
+            existingCenter.setName(updatedCenter.getName());
         }
+        if (updatedCenter.getSdt() != null && !existingCenter.getSdt().equals(updatedCenter.getSdt())){
+            phoneNumberFormatValidate.validatePhoneNumberFormat(updatedCenter.getSdt());
+            centerValidate.validateUniquePhongNumber(updatedCenter.getSdt());
+            existingCenter.setSdt(updatedCenter.getSdt());
+        }
+        if (updatedCenter.getAddress() != null && !existingCenter.getAddress().equals(updatedCenter.getAddress())){
+            existingCenter.setAddress(updatedCenter.getAddress());
+        }
+        if (updatedCenter.getEmail() != null && !existingCenter.getEmail().equals(updatedCenter.getEmail())){
+            emailFormatValidate.validateEmailFormat(updatedCenter.getEmail());
+            centerValidate.validateUniqueEmail(updatedCenter.getEmail());
+            existingCenter.setEmail(updatedCenter.getEmail());
+        }
+        if (updatedCenter.getDescription() != null && !existingCenter.getDescription().equals(updatedCenter.getDescription())){
+            existingCenter.setDescription(updatedCenter.getDescription());
+        }
+
+        if (updatedCenter.getArea() != null) {
+            Area existingArea = areaService.findById(updatedCenter.getArea().getId());
+            if (existingArea != null) {
+                existingCenter.setArea(existingArea);
+            } else {
+                areaService.save(updatedCenter.getArea());
+                existingCenter.setArea(updatedCenter.getArea());
+            }
+        }
+
+        if (updatedCenter.getManager() != null) {
+            Manager existingManager = managerService.findById(updatedCenter.getManager().getId());
+            if (existingManager != null) {
+                existingCenter.setManager(existingManager);
+            } else {
+                managerService.save(updatedCenter.getManager());
+                existingCenter.setManager(updatedCenter.getManager());
+            }
+        }
+
+        return centerRepository.save(existingCenter);
     }
 
     @Transactional
-    public void deleteCenter(int id) {
+    public void deleteById(int id) {
         Optional<Center> optionalCenter = centerRepository.findById(id);
         if (optionalCenter.isPresent()) {
             Center existingCenter = optionalCenter.get();
@@ -140,6 +141,6 @@ public class CenterServiceImpl implements CenterService {
 
     @Transactional
     public Center findById(int id){
-        return centerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Center not found with id " + id));
+        return centerRepository.findByIdAndStateTrue(id).orElseThrow(() -> new ResourceNotFoundException("Center not found with id " + id));
     }
 }

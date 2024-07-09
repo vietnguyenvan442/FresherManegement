@@ -4,10 +4,9 @@ import com.example.fresher_management.entity.Center;
 import java.util.List;
 
 public interface CenterService {
-    public List<Center> getAllCenters();
+    public List<Center> getAll(String token);
     public Center save(Center center);
-    public Center addCenter(Center center);
-    public Center updateCenter(int id, Center updatedCenter);
-    public void deleteCenter(int id);
+    public Center updateById(int id, Center updatedCenter);
+    public void deleteById(int id);
     public Center findById(int id);
 }

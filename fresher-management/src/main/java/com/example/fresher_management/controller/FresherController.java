@@ -15,52 +15,44 @@ public class FresherController {
     private FresherService fresherService;
 
     @PostMapping("")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Fresher> addFresher(@RequestBody Fresher fresher) {
         Fresher newFresher = fresherService.addFresher(fresher);
         return ResponseEntity.ok(newFresher);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Fresher> updateFresher(@PathVariable int id, @RequestBody Fresher fresher) {
         Fresher upFresher = fresherService.updateFresher(id, fresher);
         return ResponseEntity.ok(upFresher);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<String> deleteFresher(@PathVariable int id) {
         fresherService.deleteFresher(id);
         return ResponseEntity.ok("Success");
     }
 
     @GetMapping("")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Fresher>> getFreshers(@RequestHeader("Authorization") String token){
         return ResponseEntity.ok(fresherService.getFreshers(token));
     }
 
     @GetMapping("search/name/{key}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Fresher>> getSearchByName(@PathVariable String key, @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(fresherService.getSearchByName(key, token));
     }
 
     @GetMapping("search/email/{key}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Fresher>> getSearchByEmail(@PathVariable String key, @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(fresherService.getSearchByEmail(key, token));
     }
 
     @GetMapping("search/language/{key}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Fresher>> getSearchByLanguage(@PathVariable String key, @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(fresherService.getSearchByLanguage(key, token));
     }
 
     @GetMapping("/scores/{id}")
-    @PreAuthorize("hasRole('ADMIN', 'MANAGER')")
     public  ResponseEntity<Float> getScore(@PathVariable int id){
         return ResponseEntity.ok(fresherService.getScore(id));
     }

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ResultRepository extends JpaRepository<Result, Integer> {
 
-    @Query("SELECT r FROM Result r WHERE r.fresher.id = :fresher_id")
+    @Query("SELECT r FROM Result r, Fresher f WHERE r.fresher.id = :fresher_id AND f.id = r.fresher.id AND f.state = TRUE")
     List<Result> getResultsByFresher(@Param("fresher_id") int fresher_id);
 }

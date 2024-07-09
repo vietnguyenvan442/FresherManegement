@@ -16,33 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `result`
+-- Table structure for table `rank`
 --
 
-DROP TABLE IF EXISTS `result`;
+DROP TABLE IF EXISTS `rank`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `result` (
+CREATE TABLE `rank` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `point` float NOT NULL,
-  `test_id` int DEFAULT NULL,
-  `end_test` datetime DEFAULT NULL,
-  `start_test` datetime DEFAULT NULL,
-  `fresher_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKgl2xou1u7d6jrri2k1v85npw3` (`fresher_id`),
-  KEY `FKsyvhlvlv6k1d4gkqvu12rha0j` (`test_id`)
+  `description` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `result`
+-- Dumping data for table `rank`
 --
 
-LOCK TABLES `result` WRITE;
-/*!40000 ALTER TABLE `result` DISABLE KEYS */;
-INSERT INTO `result` VALUES (1,8,6,'2024-06-20 09:00:00','2024-06-01 08:00:00',17),(2,7,7,'2024-07-15 09:30:00','2024-07-15 08:00:00',17),(3,9,8,'2024-08-01 10:00:00','2024-08-01 08:00:00',17);
-/*!40000 ALTER TABLE `result` ENABLE KEYS */;
+LOCK TABLES `rank` WRITE;
+/*!40000 ALTER TABLE `rank` DISABLE KEYS */;
+INSERT INTO `rank` VALUES (1,NULL,'1'),(2,NULL,'2'),(3,NULL,'3');
+/*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:09
+-- Dump completed on 2024-07-09 14:19:55

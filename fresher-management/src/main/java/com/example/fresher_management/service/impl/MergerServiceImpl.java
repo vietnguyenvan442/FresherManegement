@@ -25,7 +25,14 @@ public class MergerServiceImpl implements MergerService {
     public Merger addMerger(MergerDto mergerDto){
         Center center_first = centerService.findById(mergerDto.getCenter_first_id());
         Center center_second = centerService.findById(mergerDto.getCenter_second_id());
-        Center center_new = centerService.addCenter(mergerDto.getCenter_new());
+
+        Center center_new = new Center();
+        if (mergerDto.getCenter_new().getId() == 0){
+            center_new = centerService.save(mergerDto.getCenter_new());
+        }
+         else {
+             center_new = centerService.updateById(mergerDto.getCenter_new().getId(), mergerDto.getCenter_new());
+        }
 
         Merger merger = new Merger();
         merger.setCenter_first(center_first);

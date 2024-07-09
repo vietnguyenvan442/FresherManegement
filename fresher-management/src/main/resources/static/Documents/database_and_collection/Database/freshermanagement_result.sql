@@ -16,36 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `record`
+-- Table structure for table `result`
 --
 
-DROP TABLE IF EXISTS `record`;
+DROP TABLE IF EXISTS `result`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `record` (
+CREATE TABLE `result` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `end_time` date DEFAULT NULL,
-  `start_time` date DEFAULT NULL,
-  `position_id` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
+  `point` float NOT NULL,
+  `test_id` int DEFAULT NULL,
+  `end_test` datetime DEFAULT NULL,
+  `start_test` datetime DEFAULT NULL,
   `fresher_id` int DEFAULT NULL,
-  `course_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKqjpfw47775aqo52iecfvo9v62` (`user_id`),
-  KEY `FKgkqa95wcbbcd9xyi2mlnsyc6c` (`course_id`),
-  KEY `FKpjcjfnqda4olcdmp5nwk7ch2f` (`fresher_id`),
-  KEY `FKgsue8hs8n2ab4bk59n5mn7qb8` (`position_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKgl2xou1u7d6jrri2k1v85npw3` (`fresher_id`),
+  KEY `FKsyvhlvlv6k1d4gkqvu12rha0j` (`test_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `record`
+-- Dumping data for table `result`
 --
 
-LOCK TABLES `record` WRITE;
-/*!40000 ALTER TABLE `record` DISABLE KEYS */;
-INSERT INTO `record` VALUES (1,'2024-07-04','2024-07-03',1,NULL,17,1),(2,NULL,'2024-07-03',1,NULL,17,1),(3,'2024-07-04','2024-07-04',1,NULL,17,1),(4,'2024-07-04','2024-07-04',1,NULL,17,1),(5,NULL,'2024-07-04',1,NULL,17,1);
-/*!40000 ALTER TABLE `record` ENABLE KEYS */;
+LOCK TABLES `result` WRITE;
+/*!40000 ALTER TABLE `result` DISABLE KEYS */;
+INSERT INTO `result` VALUES (1,8,6,'2024-06-20 09:00:00','2024-06-01 08:00:00',17),(2,7,7,'2024-07-15 09:30:00','2024-07-15 08:00:00',17),(3,9,8,'2024-08-01 10:00:00','2024-08-01 08:00:00',17);
+/*!40000 ALTER TABLE `result` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:09
+-- Dump completed on 2024-07-09 14:19:56

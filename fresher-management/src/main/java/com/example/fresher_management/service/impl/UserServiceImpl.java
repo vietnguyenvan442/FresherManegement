@@ -4,13 +4,13 @@ import com.example.fresher_management.dto.BearerToken;
 import com.example.fresher_management.dto.LoginDto;
 import com.example.fresher_management.entity.Admin;
 import com.example.fresher_management.entity.Manager;
-import com.example.fresher_management.entity.Position;
+import com.example.fresher_management.entity.Role;
 import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.exception.UserAlreadyExistsException;
 import com.example.fresher_management.exception.ValidationException;
 import com.example.fresher_management.repository.UserRepository;
-import com.example.fresher_management.service.PositionService;
+import com.example.fresher_management.service.RoleService;
 import com.example.fresher_management.service.UserService;
 import com.example.fresher_management.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private PositionService positionService;
+    private RoleService roleService;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -66,15 +66,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BearerToken generateToken(LoginDto loginDto) {
+        if (!checkState(loginDto.getUsername())) throw new ValidationException("Incorrect username or password");
+
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
         } catch (AuthenticationException e) {
             throw new ValidationException("Incorrect username or password");
         }
+
         final UserDetails userDetails = userDetailsService.loadUserByUsername(loginDto.getUsername());
         final String accessToken = jwtUtil.generateToken(userDetails);
         final String refreshToken = jwtUtil.generateRefreshToken(userDetails);
         return new BearerToken(accessToken, refreshToken);
+    }
+
+    @Override
+    public boolean checkState(String username) {
+        User user = getUserByUsername(username);
+        return user.isState();
     }
 
     public void saveAdmin() {
@@ -106,11 +115,11 @@ public class UserServiceImpl implements UserService {
         manager.setSdt("834928");
         manager.setState(true);
 
-        Position position = positionService.findById(3);
-        if (position == null) {
+        Role role = roleService.findById(3);
+        if (role == null) {
             throw new ResourceNotFoundException("Manager not found");
         }
-        manager.setPosition(position);
+        manager.setRole(role);
 
         userRepository.save(manager);
     }

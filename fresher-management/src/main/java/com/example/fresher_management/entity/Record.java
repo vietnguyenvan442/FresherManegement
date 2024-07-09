@@ -34,7 +34,7 @@ public class Record {
 	private Fresher fresher;
 
 	@JsonIgnore
-	@JoinColumn(name = "position_id")
+	@JoinColumn(name = "role_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Position position;
+	private Role role;
 }

@@ -16,36 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `center`
+-- Table structure for table `merger`
 --
 
-DROP TABLE IF EXISTS `center`;
+DROP TABLE IF EXISTS `merger`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `center` (
+CREATE TABLE `merger` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `sdt` varchar(255) DEFAULT NULL,
-  `state` bit(1) NOT NULL,
-  `area_id` int DEFAULT NULL,
-  `manager_id` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `center_first_id` int DEFAULT NULL,
+  `center_new_id` int DEFAULT NULL,
+  `center_second_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK2y8h5v6omi4yjwp3cfe6nh4d0` (`area_id`),
-  KEY `FKexkjvhqc1fea7mbntbip67wc2` (`manager_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKbm94ymlt16fw5k3nx7n5ik7br` (`center_first_id`),
+  KEY `FK5sn0woafucyx1272rqgb1tpnk` (`center_new_id`),
+  KEY `FKlici7nfdjrnciyhb7jg4566hv` (`center_second_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `center`
+-- Dumping data for table `merger`
 --
 
-LOCK TABLES `center` WRITE;
-/*!40000 ALTER TABLE `center` DISABLE KEYS */;
-INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'NY','This is a center 5','c5@example.com','Center5','0328634564',_binary '',2,9),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
-/*!40000 ALTER TABLE `center` ENABLE KEYS */;
+LOCK TABLES `merger` WRITE;
+/*!40000 ALTER TABLE `merger` DISABLE KEYS */;
+/*!40000 ALTER TABLE `merger` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:08
+-- Dump completed on 2024-07-09 14:19:55

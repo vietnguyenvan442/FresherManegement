@@ -16,32 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `course`
+-- Table structure for table `test`
 --
 
-DROP TABLE IF EXISTS `course`;
+DROP TABLE IF EXISTS `test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `course` (
+CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
-  `end_time` date DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `period` int DEFAULT NULL,
   `start_time` date DEFAULT NULL,
-  `center_id` int DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `rank_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKt3ghp7629iiejx65tf4cc4cun` (`center_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `FKf40k4y4x3i52fdg3e7nqx4fhh` (`rank_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `course`
+-- Dumping data for table `test`
 --
 
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,NULL,'2024-06-01','Dao tao fresher VMO','2024-08-01',5);
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
+LOCK TABLES `test` WRITE;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (6,60,'2020-06-01','Thuat toan',1),(7,90,'2020-06-01','code',2),(8,120,'2020-06-01','Thuyet trinh',3);
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:10
+-- Dump completed on 2024-07-09 14:19:56

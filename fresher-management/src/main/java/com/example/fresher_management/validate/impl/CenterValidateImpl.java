@@ -7,8 +7,6 @@ import com.example.fresher_management.validate.CenterValidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.regex.Pattern;
-
 @Component
 public class CenterValidateImpl implements CenterValidate {
     @Autowired

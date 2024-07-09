@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
@@ -34,7 +33,7 @@ public class User implements Serializable{
 	private boolean state;
 
 	@JsonIgnore
-	@JoinColumn(name = "position_id")
+	@JoinColumn(name = "role_id")
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Position position;
+	private Role role;
 }

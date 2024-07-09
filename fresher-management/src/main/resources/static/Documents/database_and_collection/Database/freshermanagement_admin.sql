@@ -16,32 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `merger`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `merger`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `merger` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
-  `center_first_id` int DEFAULT NULL,
-  `center_new_id` int DEFAULT NULL,
-  `center_second_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKbm94ymlt16fw5k3nx7n5ik7br` (`center_first_id`),
-  KEY `FK5sn0woafucyx1272rqgb1tpnk` (`center_new_id`),
-  KEY `FKlici7nfdjrnciyhb7jg4566hv` (`center_second_id`)
+CREATE TABLE `admin` (
+  `id` int NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `merger`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `merger` WRITE;
-/*!40000 ALTER TABLE `merger` DISABLE KEYS */;
-/*!40000 ALTER TABLE `merger` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (5);
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 15:49:09
+-- Dump completed on 2024-07-09 14:19:56

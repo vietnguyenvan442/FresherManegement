@@ -9,4 +9,5 @@ public interface UserService {
     public User getUserByUsername(String username);
     public User getUserByToken(String token);
     public BearerToken generateToken(LoginDto loginDto);
+    public boolean checkState(String username);
 }

@@ -5,6 +5,7 @@ import com.example.fresher_management.entity.Merger;
 import com.example.fresher_management.service.MergerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class MergerController {
     private MergerService mergerService;
 
     @PostMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Merger> addMerger(@RequestBody MergerDto mergerDto){
         Merger merger = mergerService.addMerger(mergerDto);
         return ResponseEntity.ok(merger);

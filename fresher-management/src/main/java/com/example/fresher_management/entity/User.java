@@ -32,7 +32,6 @@ public class User implements Serializable{
 	private float salary;
 	private boolean state;
 
-	@JsonIgnore
 	@JoinColumn(name = "role_id")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;

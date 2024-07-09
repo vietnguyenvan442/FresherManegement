@@ -142,8 +142,7 @@ public class FresherServiceImpl implements FresherService {
     @Override
     @Transactional
     public void deleteFresher(int id) {
-        Fresher existingFresher = fresherRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
+        Fresher existingFresher = findById(id)  ;
 
         existingFresher.setState(false);
         fresherRepository.save(existingFresher);
@@ -151,8 +150,7 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     public Float getScore(int id) {
-        Float res = resultService.getTotalScores(resultService.getResultsByFresher(id));
-        return res;
+        return resultService.getTotalScores(resultService.getResultsByFresher(id));
     }
 
     @Override

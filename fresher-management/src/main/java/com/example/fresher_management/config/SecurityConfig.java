@@ -1,12 +1,13 @@
 package com.example.fresher_management.config;
 
 import com.example.fresher_management.util.JwtRequestFilter;
-import com.example.fresher_management.service.impl.UserDetailsServiceImpl;
+import com.example.fresher_management.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -47,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/freshers/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/centers").hasRole("ADMIN")
                 .antMatchers("/centers").hasRole("ADMIN")
                 .antMatchers("/records/**").hasAnyRole("ADMIN", "MANAGER")
                 .antMatchers("/mergers/**").hasRole("ADMIN")

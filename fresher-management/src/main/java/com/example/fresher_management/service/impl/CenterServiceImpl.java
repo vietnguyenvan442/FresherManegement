@@ -1,5 +1,7 @@
 package com.example.fresher_management.service.impl;
 
+import com.example.fresher_management.dto.StatCenterInputDto;
+import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.Area;
 import com.example.fresher_management.entity.Center;
 import com.example.fresher_management.entity.Manager;
@@ -95,6 +97,12 @@ public class CenterServiceImpl implements CenterService {
         log.info("Finding center by id: {}", id);
         return centerRepository.findByIdAndStateTrue(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Center not found with id " + id));
+    }
+
+    @Override
+    public List<StatCenterOutputDto> statNumOfFresToCenter(StatCenterInputDto statCenterInputDto) {
+        log.info("Statistics on the number of freshers at the center during the period from " + statCenterInputDto.getStart_date() + " to " + statCenterInputDto.getEnd_date());
+        return centerRepository.statNumOfFresherToCenter(statCenterInputDto.getStart_date(), statCenterInputDto.getEnd_date());
     }
 
     private void validateCenter(Center center) {

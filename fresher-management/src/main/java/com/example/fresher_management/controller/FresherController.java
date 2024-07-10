@@ -18,7 +18,6 @@ public class FresherController {
     private FresherService fresherService;
 
     @PostMapping("")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Fresher> addFresher(@RequestBody Fresher fresher) {
         log.info("Received request to add fresher: {}", fresher);
         Fresher newFresher = fresherService.addFresher(fresher);
@@ -27,7 +26,6 @@ public class FresherController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Fresher> updateFresher(@PathVariable int id, @RequestBody Fresher fresher) {
         log.info("Received request to update fresher with ID: {}", id);
         Fresher upFresher = fresherService.updateFresher(id, fresher);
@@ -36,7 +34,6 @@ public class FresherController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<String> deleteFresher(@PathVariable int id) {
         log.info("Received request to delete fresher with ID: {}", id);
         fresherService.deleteFresher(id);
@@ -45,31 +42,27 @@ public class FresherController {
     }
 
     @GetMapping("")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Fresher>> getFreshers(@RequestHeader("Authorization") String token) {
         log.info("Received request to get freshers");
         List<Fresher> freshers = fresherService.getFreshers(token);
         return ResponseEntity.ok(freshers);
     }
 
-    @GetMapping("search/name/{key}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    @GetMapping("/search/name/{key}")
     public ResponseEntity<List<Fresher>> getSearchByName(@PathVariable String key, @RequestHeader("Authorization") String token) {
         log.info("Received request to search freshers by name: {}", key);
         List<Fresher> freshers = fresherService.getSearchByName(key, token);
         return ResponseEntity.ok(freshers);
     }
 
-    @GetMapping("search/email/{key}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    @GetMapping("/search/email/{key}")
     public ResponseEntity<List<Fresher>> getSearchByEmail(@PathVariable String key, @RequestHeader("Authorization") String token) {
         log.info("Received request to search freshers by email: {}", key);
         List<Fresher> freshers = fresherService.getSearchByEmail(key, token);
         return ResponseEntity.ok(freshers);
     }
 
-    @GetMapping("search/language/{key}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    @GetMapping("/search/language/{key}")
     public ResponseEntity<List<Fresher>> getSearchByLanguage(@PathVariable String key, @RequestHeader("Authorization") String token) {
         log.info("Received request to search freshers by language: {}", key);
         List<Fresher> freshers = fresherService.getSearchByLanguage(key, token);
@@ -77,7 +70,6 @@ public class FresherController {
     }
 
     @GetMapping("/scores/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<Float> getScore(@PathVariable int id) {
         log.info("Received request to get score for fresher with ID: {}", id);
         Float score = fresherService.getScore(id);

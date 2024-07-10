@@ -3,6 +3,7 @@ package com.example.fresher_management.config;
 import com.example.fresher_management.util.JwtRequestFilter;
 import com.example.fresher_management.security.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,7 +1,6 @@
 package com.example.fresher_management.repository;
 
 import com.example.fresher_management.entity.Fresher;
-import com.example.fresher_management.entity.Result;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

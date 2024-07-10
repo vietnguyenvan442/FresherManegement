@@ -1,9 +1,13 @@
 package com.example.fresher_management.repository;
 
+import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.Center;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,4 +23,15 @@ public interface CenterRepository extends JpaRepository<Center, Integer>, Custom
     Optional<Center> findByIdAndStateTrue(int id);
 
     List<Center> getCenterByManagerId(int id);
+
+    @Query("SELECT new com.example.fresher_management.dto.StatCenterOutputDto(c, COUNT(f)) " +
+            "FROM Center c " +
+            "JOIN Course co ON co.center.id = c.id " +
+            "JOIN Record r ON r.course.id = co.id " +
+            "JOIN Fresher f ON r.fresher.id = f.id " +
+            "WHERE r.start_time >= :start_date " +
+            "AND r.start_time <= :end_date " +
+            "AND f.state = TRUE " +
+            "GROUP BY c")
+    List<StatCenterOutputDto> statNumOfFresherToCenter(@Param("start_date") Date start_date, @Param("end_date") Date end_date);
 }

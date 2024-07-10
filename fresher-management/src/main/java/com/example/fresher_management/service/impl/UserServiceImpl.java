@@ -13,6 +13,7 @@ import com.example.fresher_management.repository.UserRepository;
 import com.example.fresher_management.service.RoleService;
 import com.example.fresher_management.service.UserService;
 import com.example.fresher_management.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -43,7 +45,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Override
     public User saveUser(User user) {
+        log.info("Saving user: {}", user);
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new UserAlreadyExistsException("User already exists with username: " + user.getUsername());
         }
@@ -51,11 +55,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
     public User getUserByUsername(String username) {
+        log.info("Fetching user by username: {}", username);
         return userRepository.findByUsername(username);
     }
 
+    @Override
     public User getUserByToken(String token) {
+        log.info("Fetching user by token");
         String username = jwtUtil.getUsernameFromToken(token);
         User user = getUserByUsername(username);
         if (user == null) {
@@ -66,6 +74,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BearerToken generateToken(LoginDto loginDto) {
+        log.info("Generating token for login dto: {}", loginDto);
         if (!checkState(loginDto.getUsername())) throw new ValidationException("Incorrect username or password");
 
         try {
@@ -82,11 +91,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkState(String username) {
+        log.info("Checking state for username: {}", username);
         User user = getUserByUsername(username);
         return user.isState();
     }
 
     public void saveAdmin() {
+        log.info("Saving default admin");
         Admin admin = new Admin();
         admin.setUsername("admin");
         admin.setPassword(passwordEncoder.encode("123"));
@@ -103,6 +114,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void saveManager() {
+        log.info("Saving default manager");
         Manager manager = new Manager();
         manager.setUsername("manager2");
         manager.setPassword(passwordEncoder.encode("123"));
@@ -117,7 +129,7 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleService.findById(3);
         if (role == null) {
-            throw new ResourceNotFoundException("Manager not found");
+            throw new ResourceNotFoundException("Manager role not found");
         }
         manager.setRole(role);
 

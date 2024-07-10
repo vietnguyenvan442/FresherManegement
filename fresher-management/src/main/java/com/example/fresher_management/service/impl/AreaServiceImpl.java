@@ -4,6 +4,7 @@ import com.example.fresher_management.entity.Area;
 import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.repository.AreaRepository;
 import com.example.fresher_management.service.AreaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class AreaServiceImpl implements AreaService {
 
     @Autowired
@@ -19,18 +21,28 @@ public class AreaServiceImpl implements AreaService {
     @Override
     @Transactional
     public List<Area> getAllAreas() {
-        return areaRepository.findAll();
+        log.info("Fetching all areas");
+        List<Area> areas = areaRepository.findAll();
+        log.info("Found {} areas", areas.size());
+        return areas;
     }
 
     @Override
     @Transactional
     public Area save(Area area) {
-        return areaRepository.save(area);
+        log.info("Saving new area: {}", area);
+        Area savedArea = areaRepository.save(area);
+        log.info("Saved area with ID: {}", savedArea.getId());
+        return savedArea;
     }
 
     @Override
     @Transactional
     public Area findById(int id) {
-        return areaRepository.findById(id).orElse(null);
+        log.info("Fetching area with ID: {}", id);
+        return areaRepository.findById(id).orElseThrow(() -> {
+            log.error("Area not found with ID: {}", id);
+            return new ResourceNotFoundException("Area not found with id " + id);
+        });
     }
 }

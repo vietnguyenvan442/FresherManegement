@@ -4,11 +4,13 @@ import com.example.fresher_management.entity.Result;
 import com.example.fresher_management.exception.ScoresException;
 import com.example.fresher_management.repository.ResultRepository;
 import com.example.fresher_management.service.ResultService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class ResultServiceImpl implements ResultService {
     @Autowired
@@ -16,18 +18,20 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public List<Result> getResultsByFresher(int fresher_id) {
+        log.info("Fetching results by fresher ID: {}", fresher_id);
         return resultRepository.getResultsByFresher(fresher_id);
     }
 
     @Override
     public Float getTotalScores(List<Result> results) {
-        if (results.isEmpty()) throw new ScoresException("Fresher haven't taken any tests yet");
-        if (results.size() < 3) throw new ScoresException("Fresher have not taken all 3 tests");
+        log.info("Calculating total scores for results: {}", results);
+        if (results.isEmpty()) throw new ScoresException("Fresher hasn't taken any tests yet");
+        if (results.size() < 3) throw new ScoresException("Fresher has not taken all 3 tests");
 
-        Float res = Float.valueOf(0);
-        for (Result result: results){
+        Float res = 0f;
+        for (Result result : results) {
             res += result.getPoint();
         }
-        return res/3;
+        return res / 3;
     }
 }

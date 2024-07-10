@@ -1,12 +1,15 @@
 package com.example.fresher_management.service.impl;
 
-import com.example.fresher_management.entity.*;
+import com.example.fresher_management.entity.Fresher;
+import com.example.fresher_management.entity.Language;
+import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.repository.FresherRepository;
 import com.example.fresher_management.service.*;
 import com.example.fresher_management.validate.EmailFormatValidate;
 import com.example.fresher_management.validate.FresherValidate;
 import com.example.fresher_management.validate.PhoneNumberFormatValidate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class FresherServiceImpl implements FresherService {
 
     @Autowired
@@ -48,55 +52,101 @@ public class FresherServiceImpl implements FresherService {
     @Override
     @Transactional
     public Fresher findById(int id) {
+        log.info("Finding fresher by ID: {}", id);
         return fresherRepository.findByIdAndStateTrue(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
+                .orElseThrow(() -> {
+                    log.error("Fresher not found with id {}", id);
+                    return new ResourceNotFoundException("Fresher not found with id " + id);
+                });
     }
 
     @Override
     @Transactional
     public List<Fresher> getFreshers(String token) {
+        log.info("Getting list of freshers");
         User user = userService.getUserByToken(token.substring(7));
-        if (user.getRole().getName().equalsIgnoreCase("ADMIN"))
+        if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             return fresherRepository.findByStateTrue();
-        else if (user.getRole().getName().equalsIgnoreCase("MANAGER"))
+        } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
             return fresherRepository.getFresherByManagerId(user.getId());
+        }
         return null;
     }
 
     @Override
     @Transactional
     public Fresher addFresher(Fresher fresher) {
+        log.info("Adding new fresher: {}", fresher);
+        validateFresher(fresher);
+        fresher.setRole(roleService.findById(1)); // Set default position
+        fresher.setLanguage(getOrSaveLanguage(fresher.getLanguage()));
+        fresher.setPassword(passwordEncoder.encode(fresher.getPassword()));
+        Fresher savedFresher = fresherRepository.save(fresher);
+        log.info("Saved fresher with ID: {}", savedFresher.getId());
+        return savedFresher;
+    }
+
+    @Override
+    @Transactional //not update ccccd
+    public Fresher updateFresher(int id, Fresher fresherDetails) {
+        log.info("Updating fresher with ID: {}", id);
+        Fresher fresher = findById(id);
+        updateFresherDetails(fresher, fresherDetails);
+        Fresher updatedFresher = fresherRepository.save(fresher);
+        log.info("Updated fresher with ID: {}", updatedFresher.getId());
+        return updatedFresher;
+    }
+
+    @Override
+    @Transactional
+    public void deleteFresher(int id) {
+        log.info("Deleting fresher with ID: {}", id);
+        Fresher existingFresher = findById(id);
+        existingFresher.setState(false);
+        fresherRepository.save(existingFresher);
+        log.info("Deleted fresher with ID: {}", id);
+    }
+
+    @Override
+    public Float getScore(int id) {
+        log.info("Calculating score for fresher with ID: {}", id);
+        return resultService.getTotalScores(resultService.getResultsByFresher(id));
+    }
+
+    @Override
+    public List<Fresher> getSearchByName(String key, String token) {
+        return searchFreshersByKey(key, token, "name");
+    }
+
+    @Override
+    public List<Fresher> getSearchByEmail(String key, String token) {
+        return searchFreshersByKey(key, token, "email");
+    }
+
+    @Override
+    public List<Fresher> getSearchByLanguage(String key, String token) {
+        return searchFreshersByKey(key, token, "language");
+    }
+
+    private void validateFresher(Fresher fresher) {
         fresherValidate.validateMandatoryFields(fresher);
         emailFormatValidate.validateEmailFormat(fresher.getEmail());
         phoneNumberFormatValidate.validatePhoneNumberFormat(fresher.getSdt());
         fresherValidate.validateUniqueCCCD(fresher.getCccd());
         fresherValidate.validateUniqueUsername(fresher.getUsername());
         fresherValidate.validateUniqueEmail(fresher.getEmail());
-
-        // Set default position
-        fresher.setRole(roleService.findById(1));
-
-        // Handle language
-        if (fresher.getLanguage() != null) {
-            Language existingLanguage = languageService.findById(fresher.getLanguage().getId());
-            if (existingLanguage != null) {
-                fresher.setLanguage(existingLanguage);
-            } else {
-                Language newLanguage = languageService.save(fresher.getLanguage());
-                fresher.setLanguage(newLanguage);
-            }
-        }
-
-        fresher.setPassword(passwordEncoder.encode(fresher.getPassword()));
-        return fresherRepository.save(fresher);
     }
 
-    @Override
-    @Transactional //not update ccccd
-    public Fresher updateFresher(int id, Fresher fresherDetails) {
-        Fresher fresher = fresherRepository.findByIdAndStateTrue(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Fresher not found with id " + id));
+    private Language getOrSaveLanguage(Language language) {
+        Language existingLanguage = languageService.findById(language.getId());
+        if (existingLanguage != null) {
+            return existingLanguage;
+        } else {
+            return languageService.save(language);
+        }
+    }
 
+    private void updateFresherDetails(Fresher fresher, Fresher fresherDetails) {
         if (fresherDetails.getPassword() != null && !fresher.getPassword().equals(fresherDetails.getPassword())) {
             fresher.setPassword(passwordEncoder.encode(fresherDetails.getPassword()));
         }
@@ -118,76 +168,26 @@ public class FresherServiceImpl implements FresherService {
             fresherValidate.validateUniqueEmail(fresherDetails.getEmail());
             fresher.setEmail(fresherDetails.getEmail());
         }
-        if (fresherDetails.getDob() != null && !fresher.getDob().equals(fresherDetails.getDob())) {
-            fresher.setDob(fresherDetails.getDob());
-        }
         if (fresherDetails.getSalary() >= 0 && fresher.getSalary() != fresherDetails.getSalary()) {
             fresher.setSalary(fresherDetails.getSalary());
         }
-
-
         if (fresherDetails.getLanguage() != null) {
-            Language existingLanguage = languageService.findById(fresherDetails.getLanguage().getId());
-            if (existingLanguage != null) {
-                fresher.setLanguage(existingLanguage);
-            } else {
-                Language newLanguage = languageService.save(fresherDetails.getLanguage());
-                fresher.setLanguage(newLanguage);
-            }
+            fresher.setLanguage(getOrSaveLanguage(fresherDetails.getLanguage()));
         }
-
-        return fresherRepository.save(fresher);
     }
 
-    @Override
-    @Transactional
-    public void deleteFresher(int id) {
-        Fresher existingFresher = findById(id)  ;
-
-        existingFresher.setState(false);
-        fresherRepository.save(existingFresher);
-    }
-
-    @Override
-    public Float getScore(int id) {
-        return resultService.getTotalScores(resultService.getResultsByFresher(id));
-    }
-
-    @Override
-    public List<Fresher> getSearchByName(String key, String token) {
+    private List<Fresher> searchFreshersByKey(String key, String token, String searchField) {
+        log.info("Searching freshers by {}: {}", searchField, key);
         List<Fresher> freshers = getFreshers(token);
         List<Fresher> listSearch = new ArrayList<>();
+        key = key.toLowerCase();
 
         for (Fresher fresher : freshers) {
-            if (fresher.getName().toLowerCase().contains(key.toLowerCase())) {
+            if (searchField.equals("name") && fresher.getName().toLowerCase().contains(key)) {
                 listSearch.add(fresher);
-            }
-        }
-
-        return listSearch;
-    }
-
-    @Override
-    public List<Fresher> getSearchByEmail(String key, String token) {
-        List<Fresher> freshers = getFreshers(token);
-        List<Fresher> listSearch = new ArrayList<>();
-
-        for (Fresher fresher : freshers) {
-            if (fresher.getEmail().toLowerCase().contains(key.toLowerCase())) {
+            } else if (searchField.equals("email") && fresher.getEmail().toLowerCase().contains(key)) {
                 listSearch.add(fresher);
-            }
-        }
-
-        return listSearch;
-    }
-
-    @Override
-    public List<Fresher> getSearchByLanguage(String key, String token) {
-        List<Fresher> freshers = getFreshers(token);
-        List<Fresher> listSearch = new ArrayList<>();
-
-        for (Fresher fresher : freshers) {
-            if (fresher.getLanguage().getName().toLowerCase().contains(key.toLowerCase())) {
+            } else if (searchField.equals("language") && fresher.getLanguage().getName().toLowerCase().contains(key)) {
                 listSearch.add(fresher);
             }
         }

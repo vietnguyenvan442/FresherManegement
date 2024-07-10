@@ -155,7 +155,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmVzaDMiLCJleHAiOjE3MjA1MDk2NDEsImlhdCI6MTcyMDUwOTI4MX0.LCf-Ipy8ZObld414zYCxQV_7vfCGlJ53TgNz20LTdKmRS1ET--mtdbtavRHDqaMklVIlSIUkgj8t-4gMXPMlgw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDUxOTU2MSwiaWF0IjoxNzIwNTE5MjAxfQ.v_Y-_uiaA-u1XceoFm9Qk3sEkSV7ZsX5NqM4yGgKaHj5yTlGpSuJ2yhBHhx2TFOOBa5UJVHwr1yjpa8P8Olnbw",
 									"type": "string"
 								}
 							]
@@ -163,7 +163,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/freshers/11",
+							"raw": "http://localhost:8080/freshers/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -171,50 +171,21 @@
 							"port": "8080",
 							"path": [
 								"freshers",
-								"11"
+								"10"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "all fresher",
+					"name": "freshers",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDE0NjIyNSwiaWF0IjoxNzIwMTQ1ODY1fQ.tw4yrrcBR84y0nh_D0yJlE6DZTFu_uG7xvSExdziC6gDQS-1d9Am11zvjugK_wyLJSulAu2YiEgYTNCGcsRmDQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/freshers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"freshers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "list fresher by manager",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwNzMzMiwiaWF0IjoxNzIwNDA2OTcyfQ.8Bi_Cdy2pl_wxqxI2AFLltkQc5lEZFc1X37-giqMr2Rl-rZFhAFuCpCAbRMk0GS6E_AiiJwr71BBXbnnotp-4w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDU4MzU0NywiaWF0IjoxNzIwNTgzMTg3fQ.-ebENWE5ATE5QFMXPlYEiifHPMp2Ll5JIXKC2bpoxNXB5mA_UI2KWm0iRf3LEWfgBVS7guLgkxdqavmqDJFyTQ",
 									"type": "string"
 								}
 							]
@@ -317,7 +288,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwNjIxMSwiaWF0IjoxNzE5OTA1ODUxfQ.XIeBihv6VbVbvRS2OcnDy60DuYXINNO60qAcg1hs-7XLcXIbQ-wKLCURWGm22Ict6q-Rvs5i1GM5YCd2F6IHZw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDU4MTQ4OCwiaWF0IjoxNzIwNTgxMTI4fQ.T85MI_GvW-jibSI2FPquTJ6Bithn9oV6Jnfp-2k7df4KtCETtT32oC6cDT5LzvLmLLIJpfhkqZ4rQ2AMgXhiqg",
 									"type": "string"
 								}
 							]
@@ -386,7 +357,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDUwOTIxMiwiaWF0IjoxNzIwNTA4ODUyfQ.NBa0I-r6qOBJUPvWrlMeKSedhdz6it4BOR_mUx8Ghjhg997aaqiEcWN1hNhB21IDnotX2gcXwRifNESef4eJOw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDU4MDYwMywiaWF0IjoxNzIwNTgwMjQzfQ.gILU2Xv7AfZ4Gq9K8moQz11pT29ugm6aWwEbqrozB0SrHKjJa6w2gSSiL8yUqxj5a0B37EG1k_FcgOsD4Khxlw",
 									"type": "string"
 								}
 							]
@@ -441,6 +412,60 @@
 							"path": [
 								"centers",
 								"fresher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Merger Center",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "statistic",
+			"item": [
+				{
+					"name": "number of fresher to center",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDYwMTQ1NCwiaWF0IjoxNzIwNjAxMDk0fQ.Sv53m-XDmJcdUm3DdiBrGoTjBU98uJS3PLT0xMt9PVieWCscMRtxd_kCA3dXHvly47Jz4_JMWCSNEodakQYI3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"start_date\": \"2020-01-01\",\r\n    \"end_date\": \"2030-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/statistic",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"statistic"
 							]
 						}
 					},

@@ -20,7 +20,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    @Cacheable(value = "role", key = "#id")
     public Role findById(int id) {
         log.info("Fetching role by id: {}", id);
         return roleRepository.findById(id)

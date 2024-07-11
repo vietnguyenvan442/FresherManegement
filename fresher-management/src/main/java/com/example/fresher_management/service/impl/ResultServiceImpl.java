@@ -18,7 +18,6 @@ public class ResultServiceImpl implements ResultService {
     private ResultRepository resultRepository;
 
     @Override
-    @Cacheable(value = "results", key = "#fresher_id")
     public List<Result> getResultsByFresher(int fresher_id) {
         log.info("Fetching results by fresher ID: {}", fresher_id);
         return resultRepository.getResultsByFresher(fresher_id);

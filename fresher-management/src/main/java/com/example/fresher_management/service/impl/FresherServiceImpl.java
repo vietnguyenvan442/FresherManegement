@@ -126,25 +126,21 @@ public class FresherServiceImpl implements FresherService {
     }
 
     @Override
-    @Cacheable(value = "freshersByName", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByName(String key, String token) {
         return searchFreshersByKey(key, token, "name");
     }
 
     @Override
-    @Cacheable(value = "freshersByEmail", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByEmail(String key, String token) {
         return searchFreshersByKey(key, token, "email");
     }
 
     @Override
-    @Cacheable(value = "freshersByLanguage", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByLanguage(String key, String token) {
         return searchFreshersByKey(key, token, "language");
     }
 
     @Override
-    @Cacheable(value = "statFresherScoreRange", key = "#statisticInputDto.start_date.toString().concat('-').concat(#statisticInputDto.end_date.toString())")
     public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(StatisticInputDto statisticInputDto) {
         log.info("Statistics on the number of freshers according to scores");
         return fresherRepository.statFresherScoreRange(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());

@@ -6,8 +6,6 @@ import com.example.fresher_management.repository.AreaRepository;
 import com.example.fresher_management.service.AreaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,7 +20,6 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     @Transactional
-    @Cacheable(value = "areas")
     public List<Area> getAllAreas() {
         log.info("Fetching all areas");
         List<Area> areas = areaRepository.findAll();
@@ -32,7 +29,6 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "areas", allEntries = true)
     public Area save(Area area) {
         log.info("Saving new area: {}", area);
         Area savedArea = areaRepository.save(area);
@@ -42,7 +38,6 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     @Transactional
-    @Cacheable(value = "area", key = "#id")
     public Area findById(int id) {
         log.info("Fetching area with ID: {}", id);
         return areaRepository.findById(id).orElseThrow(() -> {

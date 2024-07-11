@@ -109,7 +109,6 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
-    @Cacheable(value = "statCenter", key = "#statisticInputDto")
     public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto) {
         log.info("Statistics on the number of freshers at the center during the period from " + statisticInputDto.getStart_date() + " to " + statisticInputDto.getEnd_date());
         return centerRepository.statNumOfFresherToCenter(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());

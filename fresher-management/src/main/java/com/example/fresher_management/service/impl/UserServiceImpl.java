@@ -57,14 +57,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = "userByName", key = "#username")
     public User getUserByUsername(String username) {
         log.info("Fetching user by username: {}", username);
         return userRepository.findByUsername(username);
     }
 
     @Override
-    @Cacheable(value = "userByToken", key = "#token")
     public User getUserByToken(String token) {
         log.info("Fetching user by token");
         String username = jwtUtil.getUsernameFromToken(token);

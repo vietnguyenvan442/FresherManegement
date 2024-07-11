@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "fresher")
-public class Fresher extends User{
+public class Fresher extends User implements Serializable {
 
 	@JoinColumn(name = "language_id")
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

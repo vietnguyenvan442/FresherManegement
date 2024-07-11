@@ -1,6 +1,6 @@
 package com.example.fresher_management.service.impl;
 
-import com.example.fresher_management.dto.StatCenterInputDto;
+import com.example.fresher_management.dto.StatisticInputDto;
 import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.Area;
 import com.example.fresher_management.entity.Center;
@@ -12,6 +12,9 @@ import com.example.fresher_management.service.*;
 import com.example.fresher_management.validate.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -44,6 +47,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
+    @Cacheable(value = "centers", key = "#token")
     public List<Center> getAll(String token) {
         User user = userService.getUserByToken(token.substring(7));
         log.info("Fetching centers for user: {}", user);
@@ -57,6 +61,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "centers", allEntries = true)
     public Center save(Center center) {
         log.info("Saving center: {}", center);
         validateCenter(center);
@@ -72,6 +77,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
+    @CachePut(value = "centers", key = "#id")
     public Center updateById(int id, Center updatedCenter) {
         log.info("Updating center with id: {}", id);
         Center existingCenter = findById(id);
@@ -83,6 +89,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "centers", allEntries = true)
     public void deleteById(int id) {
         log.info("Deleting center with id: {}", id);
         Center existingCenter = findById(id);
@@ -93,6 +100,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
+    @Cacheable(value = "centers", key = "#id")
     public Center findById(int id) {
         log.info("Finding center by id: {}", id);
         return centerRepository.findByIdAndStateTrue(id)
@@ -100,9 +108,11 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
-    public List<StatCenterOutputDto> statNumOfFresToCenter(StatCenterInputDto statCenterInputDto) {
-        log.info("Statistics on the number of freshers at the center during the period from " + statCenterInputDto.getStart_date() + " to " + statCenterInputDto.getEnd_date());
-        return centerRepository.statNumOfFresherToCenter(statCenterInputDto.getStart_date(), statCenterInputDto.getEnd_date());
+    @Transactional
+    @Cacheable(value = "statCenter", key = "#statisticInputDto")
+    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto) {
+        log.info("Statistics on the number of freshers at the center during the period from " + statisticInputDto.getStart_date() + " to " + statisticInputDto.getEnd_date());
+        return centerRepository.statNumOfFresherToCenter(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
     }
 
     private void validateCenter(Center center) {

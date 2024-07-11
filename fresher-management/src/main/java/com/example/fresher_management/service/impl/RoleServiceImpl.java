@@ -6,6 +6,7 @@ import com.example.fresher_management.repository.RoleRepository;
 import com.example.fresher_management.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
+    @Cacheable(value = "role", key = "#id")
     public Role findById(int id) {
         log.info("Fetching role by id: {}", id);
         return roleRepository.findById(id)

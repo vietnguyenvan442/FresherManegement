@@ -1,6 +1,6 @@
 package com.example.fresher_management.service;
 
-import com.example.fresher_management.dto.StatCenterInputDto;
+import com.example.fresher_management.dto.StatisticInputDto;
 import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.Center;
 import java.util.List;
@@ -11,5 +11,5 @@ public interface CenterService {
     public Center updateById(int id, Center updatedCenter);
     public void deleteById(int id);
     public Center findById(int id);
-    public List<StatCenterOutputDto> statNumOfFresToCenter(StatCenterInputDto statCenterInputDto);
+    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto);
 }

@@ -441,7 +441,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDYwMTQ1NCwiaWF0IjoxNzIwNjAxMDk0fQ.Sv53m-XDmJcdUm3DdiBrGoTjBU98uJS3PLT0xMt9PVieWCscMRtxd_kCA3dXHvly47Jz4_JMWCSNEodakQYI3w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDY2NTMzMywiaWF0IjoxNzIwNjY0OTczfQ.InCG0kGbUAtjUMmbs0hxCgsu_Tbia-vCweKTg2r7b8Ac-a-7H9-quBBQnXwxnpcd4TlsPSUNRsUyV7IW6HP-Ag",
 									"type": "string"
 								}
 							]
@@ -458,16 +458,25 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/statistic",
+							"raw": "http://localhost:8080/statistics/centers",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"statistic"
+								"statistics",
+								"centers"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "number of fresher to scores",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

@@ -1,5 +1,7 @@
 package com.example.fresher_management.service.impl;
 
+import com.example.fresher_management.dto.StatFresherScoreRangeOutputDto;
+import com.example.fresher_management.dto.StatisticInputDto;
 import com.example.fresher_management.entity.Fresher;
 import com.example.fresher_management.entity.Language;
 import com.example.fresher_management.entity.User;
@@ -11,6 +13,9 @@ import com.example.fresher_management.validate.FresherValidate;
 import com.example.fresher_management.validate.PhoneNumberFormatValidate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +56,7 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional
+    @Cacheable(value = "fresher", key = "#id")
     public Fresher findById(int id) {
         log.info("Finding fresher by ID: {}", id);
         return fresherRepository.findByIdAndStateTrue(id)
@@ -62,6 +68,7 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional
+    @Cacheable(value = "freshers", key = "#token")
     public List<Fresher> getFreshers(String token) {
         log.info("Getting list of freshers");
         User user = userService.getUserByToken(token.substring(7));
@@ -75,6 +82,7 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "freshers", allEntries = true)
     public Fresher addFresher(Fresher fresher) {
         log.info("Adding new fresher: {}", fresher);
         validateFresher(fresher);
@@ -88,6 +96,8 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional //not update ccccd
+    @CachePut(value = "freshers", key = "#id")
+    @CacheEvict(value = "freshers", allEntries = true)
     public Fresher updateFresher(int id, Fresher fresherDetails) {
         log.info("Updating fresher with ID: {}", id);
         Fresher fresher = findById(id);
@@ -99,6 +109,7 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional
+    @CacheEvict(value = "freshers", allEntries = true)
     public void deleteFresher(int id) {
         log.info("Deleting fresher with ID: {}", id);
         Fresher existingFresher = findById(id);
@@ -108,24 +119,35 @@ public class FresherServiceImpl implements FresherService {
     }
 
     @Override
+    @Cacheable(value = "fresherScore", key = "#id")
     public Float getScore(int id) {
         log.info("Calculating score for fresher with ID: {}", id);
         return resultService.getTotalScores(resultService.getResultsByFresher(id));
     }
 
     @Override
+    @Cacheable(value = "freshersByName", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByName(String key, String token) {
         return searchFreshersByKey(key, token, "name");
     }
 
     @Override
+    @Cacheable(value = "freshersByEmail", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByEmail(String key, String token) {
         return searchFreshersByKey(key, token, "email");
     }
 
     @Override
+    @Cacheable(value = "freshersByLanguage", key = "#key.concat('-').concat(#token)")
     public List<Fresher> getSearchByLanguage(String key, String token) {
         return searchFreshersByKey(key, token, "language");
+    }
+
+    @Override
+    @Cacheable(value = "statFresherScoreRange", key = "#statisticInputDto.start_date.toString().concat('-').concat(#statisticInputDto.end_date.toString())")
+    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(StatisticInputDto statisticInputDto) {
+        log.info("Statistics on the number of freshers according to scores");
+        return fresherRepository.statFresherScoreRange(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
     }
 
     private void validateFresher(Fresher fresher) {

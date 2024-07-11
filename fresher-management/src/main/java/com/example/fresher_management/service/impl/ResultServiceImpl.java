@@ -6,6 +6,7 @@ import com.example.fresher_management.repository.ResultRepository;
 import com.example.fresher_management.service.ResultService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class ResultServiceImpl implements ResultService {
     private ResultRepository resultRepository;
 
     @Override
+    @Cacheable(value = "results", key = "#fresher_id")
     public List<Result> getResultsByFresher(int fresher_id) {
         log.info("Fetching results by fresher ID: {}", fresher_id);
         return resultRepository.getResultsByFresher(fresher_id);

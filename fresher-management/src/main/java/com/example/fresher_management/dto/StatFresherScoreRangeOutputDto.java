@@ -5,13 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatCenterInputDto {
-    private Date start_date;
-    private Date end_date;
+public class StatFresherScoreRangeOutputDto {
+    private String scoreRange;
+    private long fresherCount;
 }

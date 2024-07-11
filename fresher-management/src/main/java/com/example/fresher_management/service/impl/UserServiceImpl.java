@@ -15,6 +15,7 @@ import com.example.fresher_management.service.UserService;
 import com.example.fresher_management.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -56,12 +57,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "userByName", key = "#username")
     public User getUserByUsername(String username) {
         log.info("Fetching user by username: {}", username);
         return userRepository.findByUsername(username);
     }
 
     @Override
+    @Cacheable(value = "userByToken", key = "#token")
     public User getUserByToken(String token) {
         log.info("Fetching user by token");
         String username = jwtUtil.getUsernameFromToken(token);

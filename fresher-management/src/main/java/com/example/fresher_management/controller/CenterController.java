@@ -1,7 +1,5 @@
 package com.example.fresher_management.controller;
 
-import com.example.fresher_management.dto.StatCenterInputDto;
-import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.Center;
 import com.example.fresher_management.service.CenterService;
 import lombok.extern.slf4j.Slf4j;

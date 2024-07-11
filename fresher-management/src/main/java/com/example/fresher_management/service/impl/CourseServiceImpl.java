@@ -5,6 +5,9 @@ import com.example.fresher_management.repository.CourseRepository;
 import com.example.fresher_management.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -17,6 +20,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Override
+    @Cacheable(value = "course", key = "#id")
     public Course findById(int id) {
         log.info("Fetching course with ID: {}", id);
         return courseRepository.findById(id);
@@ -31,6 +35,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @CacheEvict(value = "course", allEntries = true)
     public void updateCenterId(int newCenterId, int centerId, Date currentDateTime) {
         log.info("Updating center ID from {} to {} for courses ending before {}", centerId, newCenterId, currentDateTime);
         courseRepository.updateCenterId(newCenterId, centerId, currentDateTime);

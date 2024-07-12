@@ -54,7 +54,7 @@ public class CenterServiceImpl implements CenterService {
         if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             return centerRepository.findByStateTrue();
         } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
-            return centerRepository.getCenterByManagerId(user.getId());
+            return centerRepository.getCenterByManagerIdAndStateTrue(user.getId());
         }
         return null;
     }
@@ -63,7 +63,7 @@ public class CenterServiceImpl implements CenterService {
     @Transactional
     @CacheEvict(value = "centers", allEntries = true)
     public Center save(Center center) {
-        log.info("Saving center: {}", center);
+        log.info("Saving center id: {}", center.getId());
         validateCenter(center);
 
         center.setArea(getOrSaveArea(center.getArea()));
@@ -71,7 +71,7 @@ public class CenterServiceImpl implements CenterService {
         center.setState(true);
 
         Center savedCenter = centerRepository.save(center);
-        log.info("Saved center: {}", savedCenter);
+        log.info("Saved center id: {}", savedCenter.getId());
         return savedCenter;
     }
 
@@ -104,13 +104,16 @@ public class CenterServiceImpl implements CenterService {
     public Center findById(int id) {
         log.info("Finding center by id: {}", id);
         return centerRepository.findByIdAndStateTrue(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Center not found with id " + id));
+                .orElseThrow(() -> {
+                    log.error("Center not found with id {}", id);
+                    return new ResourceNotFoundException("Center not found with id " + id);
+                });
     }
 
     @Override
     @Transactional
     public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto) {
-        log.info("Statistics on the number of freshers at the center during the period from " + statisticInputDto.getStart_date() + " to " + statisticInputDto.getEnd_date());
+        log.info("Statistics on the number of freshers at the center during the period from {} to {}", statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
         return centerRepository.statNumOfFresherToCenter(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
     }
 

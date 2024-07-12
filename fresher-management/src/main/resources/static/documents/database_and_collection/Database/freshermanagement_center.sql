@@ -35,7 +35,7 @@ CREATE TABLE `center` (
   PRIMARY KEY (`id`),
   KEY `FK2y8h5v6omi4yjwp3cfe6nh4d0` (`area_id`),
   KEY `FKexkjvhqc1fea7mbntbip67wc2` (`manager_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `center` (
 
 LOCK TABLES `center` WRITE;
 /*!40000 ALTER TABLE `center` DISABLE KEYS */;
-INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'NY','This is a center 5','c5@example.com','Center5','0328634564',_binary '',2,9),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9);
+INSERT INTO `center` VALUES (5,'123 HN','This is a new center','center@example.com','Center 3','123456789',_binary '',3,8),(6,'123 HN','This is a new center','center@example.com','Center 4','123456789',_binary '',3,8),(7,'NY','This is a center 5','c5@example.com','Center5','0328634564',_binary '\0',2,9),(8,'NY','This is a center 6','c6@example.com','Center 6','0328634',_binary '',2,9),(9,'HP','This is a center 7','c7@example.com','Center 9','0328678094',_binary '',1,9),(10,'HP','This is a center 8','c8@example.com','Center 8','0328678004',_binary '\0',2,9),(11,'HP','This is a center 11','c11@example.com','Center 11','0328678005',_binary '\0',2,9);
 /*!40000 ALTER TABLE `center` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 14:19:56
+-- Dump completed on 2024-07-12 14:37:47

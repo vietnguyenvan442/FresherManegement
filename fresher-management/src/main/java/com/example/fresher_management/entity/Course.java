@@ -31,7 +31,7 @@ public class Course implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Center center;
 
-	@JsonBackReference
+	@JsonBackReference(value = "course-record")
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "course", cascade = CascadeType.ALL)
 	private List<Record> listRecord;
 

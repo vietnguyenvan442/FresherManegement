@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         log.info("Saving user: {}", user);
         if (userRepository.findByUsername(user.getUsername()) != null) {
+            log.error("User already exists with username: {}", user.getUsername());
             throw new UserAlreadyExistsException("User already exists with username: " + user.getUsername());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -68,6 +69,7 @@ public class UserServiceImpl implements UserService {
         String username = jwtUtil.getUsernameFromToken(token);
         User user = getUserByUsername(username);
         if (user == null) {
+            log.error("User not found with token: {}", token);
             throw new ResourceNotFoundException("User not found with token: " + token);
         }
         return user;
@@ -76,11 +78,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public BearerToken generateToken(LoginDto loginDto) {
         log.info("Generating token for login dto: {}", loginDto);
-        if (!checkState(loginDto.getUsername())) throw new ValidationException("Incorrect username or password");
+        if (!checkState(loginDto.getUsername())) {
+            log.error("Incorrect username or password");
+            throw new ValidationException("Incorrect username or password");
+        }
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
         } catch (AuthenticationException e) {
+            log.error("Incorrect username or password");
             throw new ValidationException("Incorrect username or password");
         }
 
@@ -130,6 +136,7 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleService.findById(3);
         if (role == null) {
+            log.error("Manager role not found");
             throw new ResourceNotFoundException("Manager role not found");
         }
         manager.setRole(role);

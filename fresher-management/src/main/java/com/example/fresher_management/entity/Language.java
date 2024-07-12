@@ -24,7 +24,7 @@ public class Language  implements Serializable {
 	private String name;
 	private String description;
 
-	@JsonBackReference
+	@JsonBackReference(value = "language-fresher")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "language", cascade = CascadeType.ALL)
 	private List<Fresher> listFresher;
 	

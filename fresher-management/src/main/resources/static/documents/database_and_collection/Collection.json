@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"manager1\",\r\n    \"password\": \"123\"\r\n}",
+							"raw": "{\r\n    \"username\": \"manager2\",\r\n    \"password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwODUwOSwiaWF0IjoxNzIwNDA4MTQ5fQ.KkJVagWG80KP2q9exOei_Ou4oO58uqhdX4nFh8jnf88iHsk3kG6hHEshUUFw9cO8S7uC6WypAQv-9URnKM8VHA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjQ4MiwiaWF0IjoxNzIwNzY2MTIyfQ.5GNsPkIZ-rxBu_Ziui5JXj8zoqfvumD-9zXoESWiZZa-mvxy0NixAVhd0uwZCFYJ_8mHRcQtfnKQt7BZoQ7yJw",
 									"type": "string"
 								}
 							]
@@ -87,7 +87,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"frehs3\",\r\n  \"password\": \"password\",\r\n  \"name\": \"John Doe\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"cccd\": \"123456789\",\r\n  \"sdt\": \"0901234567\",\r\n  \"address\": \"123 Main St\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"salary\": 5000,\r\n  \"state\": true,\r\n  \"language\": {\r\n    \"id\": 3\r\n  }\r\n}\r\n",
+							"raw": "{\r\n  \"username\": \"frehs6\",\r\n  \"password\": \"123\",\r\n  \"name\": \"John 6\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"cccd\": \"1234470\",\r\n  \"sdt\": \"0909037587\",\r\n  \"address\": \"123 Main St\",\r\n  \"email\": \"john6@example.com\",\r\n  \"salary\": 5000,\r\n  \"state\": true,\r\n  \"language\": {\r\n    \"id\": 2\r\n  }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,7 +116,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDQwODUwOSwiaWF0IjoxNzIwNDA4MTQ5fQ.KkJVagWG80KP2q9exOei_Ou4oO58uqhdX4nFh8jnf88iHsk3kG6hHEshUUFw9cO8S7uC6WypAQv-9URnKM8VHA",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjQ4MiwiaWF0IjoxNzIwNzY2MTIyfQ.5GNsPkIZ-rxBu_Ziui5JXj8zoqfvumD-9zXoESWiZZa-mvxy0NixAVhd0uwZCFYJ_8mHRcQtfnKQt7BZoQ7yJw",
 									"type": "string"
 								}
 							]
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"John\"\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"son\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -133,7 +133,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/freshers/17",
+							"raw": "http://localhost:8080/freshers/18",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -141,7 +141,7 @@
 							"port": "8080",
 							"path": [
 								"freshers",
-								"17"
+								"18"
 							]
 						}
 					},
@@ -185,7 +185,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDU4MzU0NywiaWF0IjoxNzIwNTgzMTg3fQ.-ebENWE5ATE5QFMXPlYEiifHPMp2Ll5JIXKC2bpoxNXB5mA_UI2KWm0iRf3LEWfgBVS7guLgkxdqavmqDJFyTQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDc2NTU0MiwiaWF0IjoxNzIwNzY1MTgyfQ.6AzKJNPkMrWXbH19iyDXYHclflccaKXvIeFmfvOyHCCgYEB8zXqh7xNxhygpm5dD17v2xeKWplN-rZgJaKWFYA",
 									"type": "string"
 								}
 							]
@@ -214,7 +214,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDQyOTU0OSwiaWF0IjoxNzIwNDI5MTg5fQ.rsOrM7NJJvLFXbYncSKz17QPny16TK3uRjZ3yLTLVW2HBeecQobEWgG_nKuIzH7SvfvbnhbqRdpfWLSGMB9A3w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjQ4MiwiaWF0IjoxNzIwNzY2MTIyfQ.5GNsPkIZ-rxBu_Ziui5JXj8zoqfvumD-9zXoESWiZZa-mvxy0NixAVhd0uwZCFYJ_8mHRcQtfnKQt7BZoQ7yJw",
 									"type": "string"
 								}
 							]
@@ -250,7 +250,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcxOTkwMjU1NCwiaWF0IjoxNzE5OTAyMTk0fQ.j5yLMuhbYPDs_eGLiRHDi-VoNgP3m_XTdCPYotcsdlaPxDlumX0QR70TXg9IPuYYQ5j5kMtE_hZJaP8NBDfp1g",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2ODIzNSwiaWF0IjoxNzIwNzY3ODc1fQ.LHGRE2COUDG8KWlw80FEa-ENFixUz8HJXn7F29n0vba92tEL25X3VFR_IAbFyavG9aXMWTCmhF8Ybtpj6qNgFg",
 									"type": "string"
 								}
 							]
@@ -259,7 +259,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Center 6\",\r\n    \"sdt\": \"0328634\",\r\n    \"address\": \"NY\",\r\n    \"email\": \"c6@example.com\",\r\n    \"description\": \"This is a center 6\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Center 11\",\r\n    \"sdt\": \"0328678005\",\r\n    \"address\": \"HP\",\r\n    \"email\": \"c11@example.com\",\r\n    \"description\": \"This is a center 11\",\r\n    \"state\": true,\r\n    \"area\": {\r\n        \"id\": 2\r\n    },\r\n    \"manager\": {\r\n        \"id\": 9\r\n    }\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -267,14 +267,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/center",
+							"raw": "http://localhost:8080/centers",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"center"
+								"centers"
 							]
 						}
 					},
@@ -318,7 +318,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDQyMDQ0MSwiaWF0IjoxNzIwNDIwMDgxfQ.hi62BlNkxjmwyxLu0Umz812JXNhAADQ5iOlJt3BJOUvzr64ZzXSBzj82gr2s7OlVtZ7y3DFh8d8Ebn9HhUE8Xw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjY2OSwiaWF0IjoxNzIwNzY2MzA5fQ.AAIQWDEY6_2dcsa75pqWOzomWna7JVyYo7FT5tFUJTSA24u9MjYAluw5eR-QCm7eL_JOfgao1KzTPGWhaJzo5w",
 									"type": "string"
 								}
 							]
@@ -327,7 +327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Center5\"\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Center 9\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -335,7 +335,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/centers/7",
+							"raw": "http://localhost:8080/centers/9",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -343,7 +343,7 @@
 							"port": "8080",
 							"path": [
 								"centers",
-								"7"
+								"9"
 							]
 						}
 					},
@@ -357,7 +357,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMSIsImV4cCI6MTcyMDU4MDYwMywiaWF0IjoxNzIwNTgwMjQzfQ.gILU2Xv7AfZ4Gq9K8moQz11pT29ugm6aWwEbqrozB0SrHKjJa6w2gSSiL8yUqxj5a0B37EG1k_FcgOsD4Khxlw",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMiIsImV4cCI6MTcyMDc2NjkxNCwiaWF0IjoxNzIwNzY2NTU0fQ.yTrPIw6mbCXXb6MjuhkYBCS_HqdXqaELSPanC2Y64DhRfe6CAgjfEjec5vz6-UteGaSaci5RH0PwzEWXkvcOAg",
 									"type": "string"
 								}
 							]
@@ -386,7 +386,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDA3NjMwMywiaWF0IjoxNzIwMDc1OTQzfQ.wbZmdZ0TW8GHXv5fZwi59GGGocn7NiDDnot3_NWTpZ1feuBYylq2vekfZS3HvpqqUg_oDSnooinqsEOieydwEQ",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NzU4MiwiaWF0IjoxNzIwNzY3MjIyfQ.iYqswA1qKyFf5u8yUMY--WslFJBgltkjBgkq0sIeVCzTFL2C5nP6tSs9A4m31I0lOVHZ9TGwfn4aPdZvqN91NQ",
 									"type": "string"
 								}
 							]
@@ -395,7 +395,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fresher_id\": 17,\r\n    \"center_id\": 6\r\n}",
+							"raw": "{\r\n    \"fresher_id\": 20,\r\n    \"course_id\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -403,15 +403,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/centers/fresher",
+							"raw": "http://localhost:8080/records/add-fresher-to-course",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"centers",
-								"fresher"
+								"records",
+								"add-fresher-to-course"
 							]
 						}
 					},
@@ -420,8 +420,38 @@
 				{
 					"name": "Merger Center",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc3MDA3NCwiaWF0IjoxNzIwNzY5NzE0fQ.EK-HKlOZuM5dsIJrgT44wgXXpViO_FMoac5URT7N3q7x_ZMZ0ERqJ9XrPc1AdUtjnRNPUxQUxP9PORC_5vvUHQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"center_first_id\": 10,\r\n    \"center_second_id\": 9,\r\n    \"center_new\": {\r\n        \"id\": 9\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/mergers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"mergers"
+							]
+						}
 					},
 					"response": []
 				}
@@ -441,7 +471,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDY2NTMzMywiaWF0IjoxNzIwNjY0OTczfQ.InCG0kGbUAtjUMmbs0hxCgsu_Tbia-vCweKTg2r7b8Ac-a-7H9-quBBQnXwxnpcd4TlsPSUNRsUyV7IW6HP-Ag",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2ODIzNSwiaWF0IjoxNzIwNzY3ODc1fQ.LHGRE2COUDG8KWlw80FEa-ENFixUz8HJXn7F29n0vba92tEL25X3VFR_IAbFyavG9aXMWTCmhF8Ybtpj6qNgFg",
 									"type": "string"
 								}
 							]
@@ -475,8 +505,30 @@
 				{
 					"name": "number of fresher to scores",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2ODIzNSwiaWF0IjoxNzIwNzY3ODc1fQ.LHGRE2COUDG8KWlw80FEa-ENFixUz8HJXn7F29n0vba92tEL25X3VFR_IAbFyavG9aXMWTCmhF8Ybtpj6qNgFg",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/statistics/scores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"statistics",
+								"scores"
+							]
+						}
 					},
 					"response": []
 				}

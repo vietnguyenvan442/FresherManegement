@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "manager")
 public class Manager extends User implements Serializable {
 
-    @JsonBackReference
+    @JsonBackReference(value = "manager-center")
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "manager", cascade = CascadeType.ALL)
     private List<Center> listCenter;
 }

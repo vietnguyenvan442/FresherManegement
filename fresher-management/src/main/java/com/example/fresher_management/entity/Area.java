@@ -24,7 +24,7 @@ public class Area implements Serializable {
 	private String name;
 	private String description;
 
-	@JsonBackReference
+	@JsonBackReference(value = "area-center")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "area", cascade = CascadeType.ALL)
 	private List<Center> listCenter;
 	

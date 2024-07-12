@@ -31,44 +31,40 @@ public class MergerServiceImpl implements MergerService {
 
     @Override
     @Transactional
-    public Merger addMerger(MergerDto mergerDto){
+    public Merger addMerger(MergerDto mergerDto) {
         log.info("Adding merger with dto: {}", mergerDto);
 
         Center centerFirst = centerService.findById(mergerDto.getCenter_first_id());
         Center centerSecond = centerService.findById(mergerDto.getCenter_second_id());
         Center centerNew;
 
-        if (mergerDto.getCenter_new().getId() == 0){
+        if (mergerDto.getCenter_new().getId() == 0) {
             centerNew = centerService.save(mergerDto.getCenter_new());
+            updateCourseCenters(centerNew.getId(), centerFirst.getId(), centerSecond.getId());
+            centerService.deleteById(centerFirst.getId());
+            centerService.deleteById(centerSecond.getId());
+        } else if (mergerDto.getCenter_new().getId() == centerFirst.getId()) {
+            centerNew = centerFirst;
+            updateCourseCenters(centerNew.getId(), centerSecond.getId());
+            centerService.deleteById(centerSecond.getId());
+        } else if (mergerDto.getCenter_new().getId() == centerSecond.getId()) {
+            centerNew = centerSecond;
+            updateCourseCenters(centerNew.getId(), centerFirst.getId());
+            centerService.deleteById(centerFirst.getId());
         } else {
-            centerNew = centerService.updateById(mergerDto.getCenter_new().getId(), mergerDto.getCenter_new());
-            validateNewCenterId(centerNew.getId(), centerFirst.getId(), centerSecond.getId());
+            log.error("New Center ID must be {} or {}", centerFirst.getId(), centerSecond.getId());
+            throw new ValidationException("New Center ID must be " + centerFirst.getId() + " or " + centerSecond.getId());
         }
-
-        updateCourseCenters(centerNew.getId(), centerFirst.getId(), centerSecond.getId());
-        saveCentersAfterMerger(centerFirst, centerSecond);
 
         Merger merger = createMerger(centerFirst, centerSecond, centerNew);
         return mergerRepository.save(merger);
     }
 
-    private void validateNewCenterId(int centerNewId, int centerFirstId, int centerSecondId) {
-        if (centerNewId != centerFirstId && centerNewId != centerSecondId) {
-            throw new ValidationException("New Center ID must be " + centerFirstId + " or " + centerSecondId);
-        }
-    }
-
-    private void updateCourseCenters(int newCenterId, int centerFirstId, int centerSecondId) {
+    private void updateCourseCenters(int newCenterId, int... oldCenterIds) {
         Date currentDate = Date.valueOf(LocalDate.now());
-        courseService.updateCenterId(newCenterId, centerFirstId, currentDate);
-        courseService.updateCenterId(newCenterId, centerSecondId, currentDate);
-    }
-
-    private void saveCentersAfterMerger(Center centerFirst, Center centerSecond) {
-        centerFirst.setState(false);
-        centerService.save(centerFirst);
-        centerSecond.setState(false);
-        centerService.save(centerSecond);
+        for (int oldCenterId : oldCenterIds) {
+            courseService.updateCenterId(newCenterId, oldCenterId, currentDate);
+        }
     }
 
     private Merger createMerger(Center centerFirst, Center centerSecond, Center centerNew) {

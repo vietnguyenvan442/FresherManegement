@@ -38,7 +38,7 @@ public class RecordServiceImpl implements RecordService {
         log.info("Adding record with dto: {}", recordDto);
 
         Fresher fresher = fresherService.findById(recordDto.getFresher_id());
-        Course course = courseService.findById(recordDto.getCenter_id());
+        Course course = courseService.findById(recordDto.getCourse_id());
 
         validateFresherInCourse(course.getId(), fresher.getId());
 

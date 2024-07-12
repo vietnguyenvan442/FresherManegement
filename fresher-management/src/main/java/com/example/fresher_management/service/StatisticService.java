@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface StatisticService {
     public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto);
-    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(StatisticInputDto statisticInputDto);
+    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange();
 }

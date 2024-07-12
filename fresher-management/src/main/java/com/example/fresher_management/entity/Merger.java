@@ -23,17 +23,14 @@ public class Merger  implements Serializable {
 	private int id;
 	private Date date;
 
-	@JsonIgnore
 	@JoinColumn(name = "center_first_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_first;
 
-	@JsonIgnore
 	@JoinColumn(name = "center_second_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_second;
 
-	@JsonIgnore
 	@JoinColumn(name = "center_new_id")
 	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
 	private Center center_new;

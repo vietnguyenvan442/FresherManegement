@@ -28,7 +28,7 @@ public class StatisticController {
 
     @GetMapping("/scores")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<StatFresherScoreRangeOutputDto>> statisticFresherScoreRange(@RequestBody StatisticInputDto statisticInputDto){
-        return ResponseEntity.ok(statisticService.statFresherScoreRange(statisticInputDto));
+    public ResponseEntity<List<StatFresherScoreRangeOutputDto>> statisticFresherScoreRange(){
+        return ResponseEntity.ok(statisticService.statFresherScoreRange());
     }
 }

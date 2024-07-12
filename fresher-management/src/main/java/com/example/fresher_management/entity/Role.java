@@ -24,11 +24,11 @@ public class Role  implements Serializable {
 	private String name;
 	private String description;
 
-	@JsonBackReference
+	@JsonBackReference(value = "role-user")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.ALL)
 	private List<User> listUser;
 
-	@JsonBackReference
+	@JsonBackReference(value = "role-record")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.ALL)
 	private List<Record> listRecord;
 	

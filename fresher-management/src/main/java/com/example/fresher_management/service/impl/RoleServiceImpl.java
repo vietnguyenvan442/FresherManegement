@@ -23,6 +23,9 @@ public class RoleServiceImpl implements RoleService {
     public Role findById(int id) {
         log.info("Fetching role by id: {}", id);
         return roleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id " + id));
+                .orElseThrow(() -> {
+                    log.error("Role not found with id: {}", id);
+                    return new ResourceNotFoundException("Role not found with id " + id);
+                });
     }
 }

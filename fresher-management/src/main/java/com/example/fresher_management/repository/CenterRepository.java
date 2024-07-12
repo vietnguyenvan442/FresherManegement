@@ -22,7 +22,7 @@ public interface CenterRepository extends JpaRepository<Center, Integer>, Custom
 
     Optional<Center> findByIdAndStateTrue(int id);
 
-    List<Center> getCenterByManagerId(int id);
+    List<Center> getCenterByManagerIdAndStateTrue(int id);
 
     @Query("SELECT new com.example.fresher_management.dto.StatCenterOutputDto(c, COUNT(DISTINCT f)) " +
             "FROM Center c " +
@@ -31,6 +31,7 @@ public interface CenterRepository extends JpaRepository<Center, Integer>, Custom
             "JOIN Fresher f ON r.fresher.id = f.id " +
             "WHERE r.start_time >= :start_date " +
             "AND r.start_time <= :end_date " +
+            "AND (r.end_time >= :end_date OR r.end_time IS NULL) " +
             "GROUP BY c")
     List<StatCenterOutputDto> statNumOfFresherToCenter(@Param("start_date") Date start_date, @Param("end_date") Date end_date);
 }

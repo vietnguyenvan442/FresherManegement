@@ -20,8 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -53,6 +52,9 @@ public class FresherServiceImpl implements FresherService {
 
     @Autowired
     private ResultService resultService;
+
+    private static final List<String> SCORE_RANGES = Arrays.asList("9-10", "8-9", "7-8", "6-7", "5-6", "Below 5");
+
 
     @Override
     @Transactional
@@ -141,9 +143,22 @@ public class FresherServiceImpl implements FresherService {
     }
 
     @Override
-    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(StatisticInputDto statisticInputDto) {
-        log.info("Statistics on the number of freshers according to scores");
-        return fresherRepository.statFresherScoreRange(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
+    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats() {
+        List<Object[]> results = fresherRepository.statFresherScoreRange();
+        Map<String, Integer> resultMap = new HashMap<>();
+
+        for (Object[] result : results) {
+            String scoreRange = (String) result[0];
+            Long count = ((Number) result[1]).longValue();
+            resultMap.put(scoreRange, count.intValue());
+        }
+
+        List<StatFresherScoreRangeOutputDto> dtoList = new ArrayList<>();
+        for (String range : SCORE_RANGES) {
+            dtoList.add(new StatFresherScoreRangeOutputDto(range, resultMap.getOrDefault(range, 0)));
+        }
+
+        return dtoList;
     }
 
     private void validateFresher(Fresher fresher) {

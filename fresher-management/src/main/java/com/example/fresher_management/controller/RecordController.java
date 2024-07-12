@@ -20,7 +20,7 @@ public class RecordController {
     @Autowired
     private RecordService recordService;
 
-    @PostMapping("")
+    @PostMapping("/add-fresher-to-course")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Record> addRecord(@RequestBody RecordDto recordDto) {
         log.info("Received request to add record: {}", recordDto);

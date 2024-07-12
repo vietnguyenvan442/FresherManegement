@@ -11,5 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RecordDto {
     private int fresher_id;
-    private int center_id;
+    private int course_id;
 }

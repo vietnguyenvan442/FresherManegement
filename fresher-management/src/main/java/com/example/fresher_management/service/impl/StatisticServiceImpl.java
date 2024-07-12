@@ -27,7 +27,7 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
-    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(StatisticInputDto statisticInputDto) {
-        return fresherService.statFresherScoreRange(statisticInputDto);
+    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange() {
+        return fresherService.getFresherScoreRangeStats();
     }
 }

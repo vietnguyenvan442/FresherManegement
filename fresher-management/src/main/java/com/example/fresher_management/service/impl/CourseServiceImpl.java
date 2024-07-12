@@ -19,6 +19,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course findById(int id) {
         log.info("Fetching course with ID: {}", id);
+
         return courseRepository.findById(id);
     }
 
@@ -26,7 +27,7 @@ public class CourseServiceImpl implements CourseService {
     public boolean checkCourseEnded(int id) {
         Course course = findById(id);
         boolean isEnded = course.getEnd_time().compareTo(Date.valueOf(LocalDate.now())) < 0;
-        log.info("Course with ID: {} has ended: {}", id, isEnded);
+        log.error("Course with ID: {} has ended: {}", id, isEnded);
         return isEnded;
     }
 

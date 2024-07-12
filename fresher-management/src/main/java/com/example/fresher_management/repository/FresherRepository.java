@@ -26,28 +26,22 @@ public interface FresherRepository extends JpaRepository<Fresher, Integer> {
     @Query("SELECT f FROM Fresher f, Center c, Record r, Course co WHERE c.manager.id = :manager_id AND co.center.id = c.id AND r.course.id = co.id AND r.fresher.id = f.id AND f.state = TRUE GROUP BY f.id")
     List<Fresher> getFresherByManagerId(@Param("manager_id") Integer manager_id);
 
-    @Query("SELECT new com.example.fresher_management.dto.StatFresherScoreRangeOutputDto(" +
+    @Query(value = "SELECT " +
             "CASE " +
-            "WHEN AVG(r.point) >= 9 THEN '9-10' " +
-            "WHEN AVG(r.point) >= 8 THEN '8-9' " +
-            "WHEN AVG(r.point) >= 7 THEN '7-8' " +
-            "WHEN AVG(r.point) >= 6 THEN '6-7' " +
-            "WHEN AVG(r.point) >= 5 THEN '5-6' " +
-            "ELSE 'Below 5' END, COUNT(f)) " +
-            "FROM Fresher f " +
-            "JOIN f.listResult r " +
-            "JOIN Record re ON re.fresher.id = f.id " +
-            "WHERE re.start_time >= :startDate " +
-            "AND re.end_time <= :endDate " +
-            "AND f.state = TRUE " +
-            "GROUP BY " +
-            "CASE " +
-            "WHEN AVG(r.point) >= 9 THEN '9-10' " +
-            "WHEN AVG(r.point) >= 8 THEN '8-9' " +
-            "WHEN AVG(r.point) >= 7 THEN '7-8' " +
-            "WHEN AVG(r.point) >= 6 THEN '6-7' " +
-            "WHEN AVG(r.point) >= 5 THEN '5-6' " +
-            "ELSE 'Below 5' END " +
-            "HAVING COUNT(r.id) = 3")
-    List<StatFresherScoreRangeOutputDto> statFresherScoreRange(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+            "    WHEN temp.avgPoint >= 9 THEN '9-10' " +
+            "    WHEN temp.avgPoint >= 8 THEN '8-9' " +
+            "    WHEN temp.avgPoint >= 7 THEN '7-8' " +
+            "    WHEN temp.avgPoint >= 6 THEN '6-7' " +
+            "    WHEN temp.avgPoint >= 5 THEN '5-6' " +
+            "    ELSE 'Below 5' " +
+            "END as scoreRange, COUNT(temp.fresherId) as count " +
+            "FROM ( " +
+            "    SELECT f.id as fresherId, AVG(r.point) as avgPoint " +
+            "    FROM fresher f " +
+            "    JOIN result r ON r.fresher_id = f.id " +
+            "    GROUP BY f.id " +
+            "    HAVING COUNT(r.id) = 3 " +
+            ") as temp " +
+            "GROUP BY scoreRange", nativeQuery = true)
+    List<Object[]> statFresherScoreRange();
 }

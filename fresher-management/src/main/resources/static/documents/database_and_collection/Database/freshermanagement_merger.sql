@@ -32,7 +32,7 @@ CREATE TABLE `merger` (
   KEY `FKbm94ymlt16fw5k3nx7n5ik7br` (`center_first_id`),
   KEY `FK5sn0woafucyx1272rqgb1tpnk` (`center_new_id`),
   KEY `FKlici7nfdjrnciyhb7jg4566hv` (`center_second_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `merger` (
 
 LOCK TABLES `merger` WRITE;
 /*!40000 ALTER TABLE `merger` DISABLE KEYS */;
+INSERT INTO `merger` VALUES (1,'2024-07-12',10,10,11),(2,'2024-07-12',10,9,9);
 /*!40000 ALTER TABLE `merger` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-09 14:19:55
+-- Dump completed on 2024-07-12 14:37:48

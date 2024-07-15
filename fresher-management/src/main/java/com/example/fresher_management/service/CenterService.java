@@ -12,4 +12,5 @@ public interface CenterService {
     public void deleteById(int id);
     public Center findById(int id);
     public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto);
+    public List<StatCenterOutputDto> statNumOfFresToCenterForManager(StatisticInputDto statisticInputDto, int manager_id);
 }

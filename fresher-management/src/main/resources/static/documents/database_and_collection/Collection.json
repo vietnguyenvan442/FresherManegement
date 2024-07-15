@@ -205,37 +205,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Score",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjQ4MiwiaWF0IjoxNzIwNzY2MTIyfQ.5GNsPkIZ-rxBu_Ziui5JXj8zoqfvumD-9zXoESWiZZa-mvxy0NixAVhd0uwZCFYJ_8mHRcQtfnKQt7BZoQ7yJw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/freshers/scores/17",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"freshers",
-								"scores",
-								"17"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -471,7 +440,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2ODIzNSwiaWF0IjoxNzIwNzY3ODc1fQ.LHGRE2COUDG8KWlw80FEa-ENFixUz8HJXn7F29n0vba92tEL25X3VFR_IAbFyavG9aXMWTCmhF8Ybtpj6qNgFg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMiIsImV4cCI6MTcyMTAyNzczNCwiaWF0IjoxNzIxMDI3Mzc0fQ.2altJp4sQJMimMgwIxkU6415fcF46xToH_Vfh1wZQDk3xjjq-Sa52PPx19vA06xYvr-7WncYC8Ut1RZnZvYkNw",
 									"type": "string"
 								}
 							]
@@ -510,7 +479,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2ODIzNSwiaWF0IjoxNzIwNzY3ODc1fQ.LHGRE2COUDG8KWlw80FEa-ENFixUz8HJXn7F29n0vba92tEL25X3VFR_IAbFyavG9aXMWTCmhF8Ybtpj6qNgFg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMiIsImV4cCI6MTcyMTAyNjc4NiwiaWF0IjoxNzIxMDI2NDI2fQ.99SqS5AMDhygrlYT2RyX0TetlAsnlJouBLRjGDb030HwJ75fW8fic4vtHqzP03msmifxP4IEieF9yHt7P8VUdQ",
 									"type": "string"
 								}
 							]
@@ -527,6 +496,80 @@
 							"path": [
 								"statistics",
 								"scores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Score",
+			"item": [
+				{
+					"name": "Score",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMDc2NjQ4MiwiaWF0IjoxNzIwNzY2MTIyfQ.5GNsPkIZ-rxBu_Ziui5JXj8zoqfvumD-9zXoESWiZZa-mvxy0NixAVhd0uwZCFYJ_8mHRcQtfnKQt7BZoQ7yJw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/freshers/scores/17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"freshers",
+								"scores",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add result",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMiIsImV4cCI6MTcyMTAxNTE0MSwiaWF0IjoxNzIxMDE0NzgxfQ.0_8tJaPmrVnd69Pv_gcTzWdaa6_89YnBiNKbpkaN0fmbJCZFo8x6a2avSe9nu3KTNYvp6J7UZ0UgKuXUlGq8ng",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"point\": 7,\r\n    \"test_id\": 6,\r\n    \"fresher_id\": 17,\r\n    \"start_test\": \"2024-06-15 08:00:00\",\r\n    \"end_test\": \"2024-06-15 09:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/results",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"results"
 							]
 						}
 					},

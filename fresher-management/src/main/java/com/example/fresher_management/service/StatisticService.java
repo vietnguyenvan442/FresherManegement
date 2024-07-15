@@ -7,6 +7,6 @@ import com.example.fresher_management.dto.StatCenterOutputDto;
 import java.util.List;
 
 public interface StatisticService {
-    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto);
-    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange();
+    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto, String token);
+    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(String token);
 }

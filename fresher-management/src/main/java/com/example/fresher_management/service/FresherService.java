@@ -16,5 +16,5 @@ public interface FresherService {
     public List<Fresher> getSearchByName(String key, String token);
     public List<Fresher> getSearchByEmail(String key, String token);
     public List<Fresher> getSearchByLanguage(String key, String token);
-    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats();
+    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats(String token);
 }

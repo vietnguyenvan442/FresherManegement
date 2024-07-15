@@ -143,8 +143,16 @@ public class FresherServiceImpl implements FresherService {
     }
 
     @Override
-    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats() {
-        List<Object[]> results = fresherRepository.statFresherScoreRange();
+    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats(String token) {
+        List<Object[]> results = new ArrayList<>();
+
+        User user = userService.getUserByToken(token.substring(7));
+        if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
+            results = fresherRepository.statFresherScoreRange();
+        } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
+            results = fresherRepository.statFresherScoreRangeForManager(user.getId());
+        }
+
         Map<String, Integer> resultMap = new HashMap<>();
 
         for (Object[] result : results) {

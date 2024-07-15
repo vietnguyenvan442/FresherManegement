@@ -7,10 +7,7 @@ import com.example.fresher_management.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,14 +18,14 @@ public class StatisticController {
     private StatisticService statisticService;
 
     @GetMapping("/centers")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<StatCenterOutputDto>> statisticCenter(@RequestBody StatisticInputDto statisticInputDto){
-        return ResponseEntity.ok(statisticService.statNumOfFresToCenter(statisticInputDto));
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public ResponseEntity<List<StatCenterOutputDto>> statisticCenter(@RequestBody StatisticInputDto statisticInputDto, @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(statisticService.statNumOfFresToCenter(statisticInputDto, token));
     }
 
     @GetMapping("/scores")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<StatFresherScoreRangeOutputDto>> statisticFresherScoreRange(){
-        return ResponseEntity.ok(statisticService.statFresherScoreRange());
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public ResponseEntity<List<StatFresherScoreRangeOutputDto>> statisticFresherScoreRange(@RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(statisticService.statFresherScoreRange(token));
     }
 }

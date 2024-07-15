@@ -44,4 +44,27 @@ public interface FresherRepository extends JpaRepository<Fresher, Integer> {
             ") as temp " +
             "GROUP BY scoreRange", nativeQuery = true)
     List<Object[]> statFresherScoreRange();
+
+    @Query(value = "SELECT " +
+            "CASE " +
+            "    WHEN temp.avgPoint >= 9 THEN '9-10' " +
+            "    WHEN temp.avgPoint >= 8 THEN '8-9' " +
+            "    WHEN temp.avgPoint >= 7 THEN '7-8' " +
+            "    WHEN temp.avgPoint >= 6 THEN '6-7' " +
+            "    WHEN temp.avgPoint >= 5 THEN '5-6' " +
+            "    ELSE 'Below 5' " +
+            "END as scoreRange, COUNT(temp.fresherId) as count " +
+            "FROM ( " +
+            "    SELECT f.id as fresherId, AVG(r.point) as avgPoint " +
+            "    FROM fresher f " +
+            "    JOIN result r ON r.fresher_id = f.id " +
+            "    JOIN record rec ON rec.fresher_id = f.id " +
+            "    JOIN course c ON c.id = rec.course_id " +
+            "    JOIN center cen ON cen.id = c.center_id " +
+            "    WHERE cen.manager_id = :manager_id" +
+            "    GROUP BY f.id " +
+            "    HAVING COUNT(r.id) = 3 " +
+            ") as temp " +
+            "GROUP BY scoreRange", nativeQuery = true)
+    List<Object[]> statFresherScoreRangeForManager(@Param("manager_id") int manager_id);
 }

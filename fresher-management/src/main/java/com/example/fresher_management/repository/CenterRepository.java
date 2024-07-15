@@ -34,4 +34,17 @@ public interface CenterRepository extends JpaRepository<Center, Integer>, Custom
             "AND (r.end_time >= :end_date OR r.end_time IS NULL) " +
             "GROUP BY c")
     List<StatCenterOutputDto> statNumOfFresherToCenter(@Param("start_date") Date start_date, @Param("end_date") Date end_date);
+
+    @Query("SELECT new com.example.fresher_management.dto.StatCenterOutputDto(c, COUNT(DISTINCT f)) " +
+            "FROM Center c " +
+            "JOIN Course co ON co.center.id = c.id " +
+            "JOIN Record r ON r.course.id = co.id " +
+            "JOIN Fresher f ON r.fresher.id = f.id " +
+            "WHERE r.start_time >= :start_date " +
+            "AND r.start_time <= :end_date " +
+            "AND (r.end_time >= :end_date OR r.end_time IS NULL) " +
+            "AND c.manager.id = :manager_id " +
+            "GROUP BY c")
+    List<StatCenterOutputDto> statNumOfFresherToCenterForManager(@Param("start_date") Date start_date, @Param("end_date") Date end_date, @Param("manager_id") int manager_id);
+
 }

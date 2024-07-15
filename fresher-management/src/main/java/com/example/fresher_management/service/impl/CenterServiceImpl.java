@@ -117,6 +117,13 @@ public class CenterServiceImpl implements CenterService {
         return centerRepository.statNumOfFresherToCenter(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
     }
 
+    @Override
+    @Transactional
+    public List<StatCenterOutputDto> statNumOfFresToCenterForManager(StatisticInputDto statisticInputDto, int manager_id) {
+        log.info("Statistics on the number of freshers at the center for manager id: {} during the period from {} to {}", manager_id, statisticInputDto.getStart_date(), statisticInputDto.getEnd_date());
+        return centerRepository.statNumOfFresherToCenterForManager(statisticInputDto.getStart_date(), statisticInputDto.getEnd_date(), manager_id);
+    }
+
     private void validateCenter(Center center) {
         centerValidate.validateMandatoryFields(center);
         phoneNumberFormatValidate.validatePhoneNumberFormat(center.getSdt());

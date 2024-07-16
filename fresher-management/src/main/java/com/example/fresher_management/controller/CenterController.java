@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/centers")
 @Slf4j
+@CrossOrigin
 public class CenterController {
 
     @Autowired

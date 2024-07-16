@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/results")
+@CrossOrigin
 public class ResultController {
     @Autowired
     private ResultService resultService;

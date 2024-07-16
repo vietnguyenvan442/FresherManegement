@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/freshers")
 @Slf4j
+@CrossOrigin
 public class FresherController {
     @Autowired
     private FresherService fresherService;

@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/statistics")
+@CrossOrigin
 public class StatisticController {
     @Autowired
     private StatisticService statisticService;

@@ -1,7 +1,9 @@
 package com.example.fresher_management.controller;
 
 import com.example.fresher_management.entity.Fresher;
+import com.example.fresher_management.entity.User;
 import com.example.fresher_management.service.FresherService;
+import com.example.fresher_management.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import java.util.List;
 public class FresherController {
     @Autowired
     private FresherService fresherService;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("")
     public ResponseEntity<Fresher> addFresher(@RequestBody Fresher fresher) {
@@ -44,29 +49,33 @@ public class FresherController {
 
     @GetMapping("")
     public ResponseEntity<List<Fresher>> getFreshers(@RequestHeader("Authorization") String token) {
+        User user = userService.getUserByToken(token);
         log.info("Received request to get freshers");
-        List<Fresher> freshers = fresherService.getFreshers(token);
+        List<Fresher> freshers = fresherService.getFreshers(user);
         return ResponseEntity.ok(freshers);
     }
 
     @GetMapping("/search/name/{key}")
     public ResponseEntity<List<Fresher>> getSearchByName(@PathVariable String key, @RequestHeader("Authorization") String token) {
+        User user = userService.getUserByToken(token);
         log.info("Received request to search freshers by name: {}", key);
-        List<Fresher> freshers = fresherService.getSearchByName(key, token);
+        List<Fresher> freshers = fresherService.getSearchByName(key, user);
         return ResponseEntity.ok(freshers);
     }
 
     @GetMapping("/search/email/{key}")
     public ResponseEntity<List<Fresher>> getSearchByEmail(@PathVariable String key, @RequestHeader("Authorization") String token) {
+        User user = userService.getUserByToken(token);
         log.info("Received request to search freshers by email: {}", key);
-        List<Fresher> freshers = fresherService.getSearchByEmail(key, token);
+        List<Fresher> freshers = fresherService.getSearchByEmail(key, user);
         return ResponseEntity.ok(freshers);
     }
 
     @GetMapping("/search/language/{key}")
     public ResponseEntity<List<Fresher>> getSearchByLanguage(@PathVariable String key, @RequestHeader("Authorization") String token) {
+        User user = userService.getUserByToken(token);
         log.info("Received request to search freshers by language: {}", key);
-        List<Fresher> freshers = fresherService.getSearchByLanguage(key, token);
+        List<Fresher> freshers = fresherService.getSearchByLanguage(key, user);
         return ResponseEntity.ok(freshers);
     }
 

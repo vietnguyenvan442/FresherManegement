@@ -1,7 +1,9 @@
 package com.example.fresher_management.controller;
 
 import com.example.fresher_management.entity.Center;
+import com.example.fresher_management.entity.User;
 import com.example.fresher_management.service.CenterService;
+import com.example.fresher_management.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,15 @@ public class CenterController {
     @Autowired
     private CenterService centerService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("")
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<List<Center>> getAllCenters(@RequestHeader("Authorization") String token) {
-        log.info("Received request to get all centers with token: {}", token);
-        List<Center> centers = centerService.getAll(token);
+        User user = userService.getUserByToken(token);
+        log.info("Received request to get all centers with user: {}", user.getName());
+        List<Center> centers = centerService.getAll(user);
         log.info("Returning {} centers", centers.size());
         return ResponseEntity.ok(centers);
     }

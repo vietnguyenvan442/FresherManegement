@@ -25,7 +25,7 @@ services:
       - MYSQL_ROOT_PASSWORD=dinhcaonhat123456789
     volumes:
       - mysql-data:/var/lib/mysql
-      - F:/Desktop/VMO/FresherManagement/fresher-management/src/main/resources/static/documents/database_and_collection/Database:/docker-entrypoint-initdb.d
+      - ./src/main/resources/static/documents/database_and_collection/Database:/docker-entrypoint-initdb.d
     networks:
       - springboot-mysql-network
     healthcheck:

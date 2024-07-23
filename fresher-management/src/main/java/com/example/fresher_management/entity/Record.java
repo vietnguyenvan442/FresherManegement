@@ -21,6 +21,8 @@ public class Record  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private Date start_time;
 	private Date end_time;
 

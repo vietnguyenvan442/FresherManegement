@@ -19,7 +19,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course findById(int id) {
         log.info("Fetching course with ID: {}", id);
-
         return courseRepository.findById(id);
     }
 

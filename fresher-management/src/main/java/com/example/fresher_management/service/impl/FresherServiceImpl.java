@@ -70,10 +70,8 @@ public class FresherServiceImpl implements FresherService {
 
     @Override
     @Transactional
-    @Cacheable(value = "freshers", key = "#token")
-    public List<Fresher> getFreshers(String token) {
-        log.info("Getting list of freshers");
-        User user = userService.getUserByToken(token.substring(7));
+    @Cacheable(value = "freshers", key = "#user")
+    public List<Fresher> getFreshers(User user) {
         if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             return fresherRepository.findByStateTrue();
         } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
@@ -88,7 +86,7 @@ public class FresherServiceImpl implements FresherService {
     public Fresher addFresher(Fresher fresher) {
         log.info("Adding new fresher: {}", fresher);
         validateFresher(fresher);
-        fresher.setRole(roleService.findById(1)); // Set default position
+        fresher.setRole(roleService.findById(1));
         fresher.setLanguage(getOrSaveLanguage(fresher.getLanguage()));
         fresher.setPassword(passwordEncoder.encode(fresher.getPassword()));
         Fresher savedFresher = fresherRepository.save(fresher);
@@ -96,8 +94,9 @@ public class FresherServiceImpl implements FresherService {
         return savedFresher;
     }
 
+    //not update ccccd
     @Override
-    @Transactional //not update ccccd
+    @Transactional
     @CachePut(value = "freshers", key = "#id")
     @CacheEvict(value = "freshers", allEntries = true)
     public Fresher updateFresher(int id, Fresher fresherDetails) {
@@ -128,25 +127,24 @@ public class FresherServiceImpl implements FresherService {
     }
 
     @Override
-    public List<Fresher> getSearchByName(String key, String token) {
-        return searchFreshersByKey(key, token, "name");
+    public List<Fresher> getSearchByName(String key, User user) {
+        return searchFreshersByKey(key, user, "name");
     }
 
     @Override
-    public List<Fresher> getSearchByEmail(String key, String token) {
-        return searchFreshersByKey(key, token, "email");
+    public List<Fresher> getSearchByEmail(String key, User user) {
+        return searchFreshersByKey(key, user, "email");
     }
 
     @Override
-    public List<Fresher> getSearchByLanguage(String key, String token) {
-        return searchFreshersByKey(key, token, "language");
+    public List<Fresher> getSearchByLanguage(String key, User user) {
+        return searchFreshersByKey(key, user, "language");
     }
 
     @Override
-    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats(String token) {
+    public List<StatFresherScoreRangeOutputDto> getFresherScoreRangeStats(User user) {
         List<Object[]> results = new ArrayList<>();
 
-        User user = userService.getUserByToken(token.substring(7));
         if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             results = fresherRepository.statFresherScoreRange();
         } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
@@ -217,9 +215,9 @@ public class FresherServiceImpl implements FresherService {
         }
     }
 
-    private List<Fresher> searchFreshersByKey(String key, String token, String searchField) {
+    private List<Fresher> searchFreshersByKey(String key, User user, String searchField) {
         log.info("Searching freshers by {}: {}", searchField, key);
-        List<Fresher> freshers = getFreshers(token);
+        List<Fresher> freshers = getFreshers(user);
         List<Fresher> listSearch = new ArrayList<>();
         key = key.toLowerCase();
 

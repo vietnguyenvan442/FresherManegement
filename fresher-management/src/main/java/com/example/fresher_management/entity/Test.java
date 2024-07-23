@@ -23,8 +23,14 @@ public class Test  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private String title;
+
+	@Column(nullable = false)
 	private Date start_time;
+
+	@Column(nullable = false)
 	private int period;
 
 	@JsonIgnore

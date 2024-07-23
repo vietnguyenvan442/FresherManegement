@@ -28,8 +28,7 @@ public class StatisticServiceImpl implements StatisticService {
     private UserService userService;
 
     @Override
-    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto, String token) {
-        User user = userService.getUserByToken(token.substring(7));
+    public List<StatCenterOutputDto> statNumOfFresToCenter(StatisticInputDto statisticInputDto, User user) {
         if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             return centerService.statNumOfFresToCenter(statisticInputDto);
         } else if ("MANAGER".equalsIgnoreCase(user.getRole().getName())) {
@@ -40,7 +39,7 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Override
-    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(String token) {
-        return fresherService.getFresherScoreRangeStats(token);
+    public List<StatFresherScoreRangeOutputDto> statFresherScoreRange(User user) {
+        return fresherService.getFresherScoreRangeStats(user);
     }
 }

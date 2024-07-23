@@ -21,13 +21,27 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private String username;
+
+	@Column(nullable = false)
 	private String password;
+
+	@Column(nullable = false)
 	private String name;
 	private String dob;
+
+	@Column(nullable = false)
 	private String cccd;
+
+	@Column(nullable = false)
 	private String sdt;
+
+	@Column(nullable = false)
 	private String address;
+
+	@Column(nullable = false)
 	private String email;
 	private float salary;
 	private boolean state;

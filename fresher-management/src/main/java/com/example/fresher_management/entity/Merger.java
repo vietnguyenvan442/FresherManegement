@@ -21,6 +21,8 @@ public class Merger  implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private Date date;
 
 	@JoinColumn(name = "center_first_id")

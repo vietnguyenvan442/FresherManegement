@@ -26,10 +26,18 @@ public class Center implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private String address;
 	private String description;
+
+	@Column(nullable = false)
 	private String email;
+
+	@Column(nullable = false)
 	private String name;
+
+	@Column(nullable = false)
 	private String sdt;
 	private boolean state;
 

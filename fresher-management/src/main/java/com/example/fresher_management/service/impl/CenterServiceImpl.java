@@ -47,9 +47,8 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     @Transactional
-    @Cacheable(value = "centers", key = "#token")
-    public List<Center> getAll(String token) {
-        User user = userService.getUserByToken(token.substring(7));
+    @Cacheable(value = "centers", key = "#user")
+    public List<Center> getAll(User user) {
         log.info("Fetching centers for user: {}", user);
         if ("ADMIN".equalsIgnoreCase(user.getRole().getName())) {
             return centerRepository.findByStateTrue();

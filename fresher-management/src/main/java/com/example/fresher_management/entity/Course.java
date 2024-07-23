@@ -22,8 +22,12 @@ public class Course implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private String name;
 	private String description;
+
+	@Column(nullable = false)
 	private Date start_time;
 	private Date end_time;
 	

@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByToken(String token) {
         log.info("Fetching user by token");
-        String username = jwtUtil.getUsernameFromToken(token);
+        String username = jwtUtil.getUsernameFromToken(token.substring(7));
         User user = getUserByUsername(username);
         if (user == null) {
             log.error("User not found with token: {}", token);
@@ -100,10 +100,7 @@ public class UserServiceImpl implements UserService {
     public boolean checkState(String username) {
         log.info("Checking state for username: {}", username);
         User user = getUserByUsername(username);
-        if (user == null) {
-            log.error("User not found");
-            throw new ResourceNotFoundException("User not found");
-        }
+        if (user == null) return false;
         return user.isState();
     }
 

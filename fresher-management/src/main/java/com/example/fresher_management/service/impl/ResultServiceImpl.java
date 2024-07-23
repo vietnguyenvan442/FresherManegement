@@ -1,10 +1,7 @@
 package com.example.fresher_management.service.impl;
 
 import com.example.fresher_management.dto.ResultDto;
-import com.example.fresher_management.entity.Fresher;
-import com.example.fresher_management.entity.Rank;
-import com.example.fresher_management.entity.Result;
-import com.example.fresher_management.entity.Test;
+import com.example.fresher_management.entity.*;
 import com.example.fresher_management.exception.ForbiddenException;
 import com.example.fresher_management.exception.RankTestHasScoreException;
 import com.example.fresher_management.exception.ScoresException;
@@ -64,13 +61,13 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public Result save(ResultDto resultDto, String token) {
+    public Result save(ResultDto resultDto, User user) {
         log.info("Saving a new resultDto for Fresher ID: " + resultDto.getFresher_id());
 
         Test test = testService.findById(resultDto.getTest_id());
         Fresher fresher = fresherService.findById(resultDto.getFresher_id());
 
-        List<Fresher> freshers = fresherService.getFreshers(token);
+        List<Fresher> freshers = fresherService.getFreshers(user);
         if (!freshers.contains(fresher)) throw new ForbiddenException("Manager does not have the right to add points to this fresher ID: " + fresher.getId());
 
         List<Rank> ranks = rankService.findByFresherId(fresher.getId(), test.getRank().getId());

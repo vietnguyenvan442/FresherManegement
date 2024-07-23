@@ -64,6 +64,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "user info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMTM3NjUwNCwiaWF0IjoxNzIxMzc2MTQ0fQ.u31mOuhnGavFts7oXN1xVmMMt4O8BWOwTOGqZT4tygcLMG6jN0HqpOUKw6qyI1ppDVgahki7qITZWg5Xb854eA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"info"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -326,7 +356,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyMiIsImV4cCI6MTcyMDc2NjkxNCwiaWF0IjoxNzIwNzY2NTU0fQ.yTrPIw6mbCXXb6MjuhkYBCS_HqdXqaELSPanC2Y64DhRfe6CAgjfEjec5vz6-UteGaSaci5RH0PwzEWXkvcOAg",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyMTcwNDAzOCwiaWF0IjoxNzIxNzAzNjc4fQ.FMbNa3A72yc3NP2gekDWiX4t6r_7UlBUAmInpA8gTzTagxwNEyvMhJNBemFG4lslu0HH84HV9MWc4yel7lXuUA",
 									"type": "string"
 								}
 							]

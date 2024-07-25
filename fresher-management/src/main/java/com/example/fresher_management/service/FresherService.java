@@ -13,7 +13,7 @@ public interface FresherService {
     public Fresher addFresher(Fresher fresher);
     public Fresher updateFresher(int id, Fresher fresherDetails);
     public void deleteFresher(int id);
-    public Float getScore(int id);
+//    public Float getScore(int id);
     public List<Fresher> getSearchByName(String key, User user);
     public List<Fresher> getSearchByEmail(String key, User user);
     public List<Fresher> getSearchByLanguage(String key, User user);

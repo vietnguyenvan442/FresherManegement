@@ -2,12 +2,9 @@ package com.example.fresher_management.service.impl;
 
 import com.example.fresher_management.dto.BearerToken;
 import com.example.fresher_management.dto.LoginDto;
-import com.example.fresher_management.entity.Admin;
-import com.example.fresher_management.entity.Manager;
-import com.example.fresher_management.entity.Role;
 import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ResourceNotFoundException;
-import com.example.fresher_management.exception.UserAlreadyExistsException;
+import com.example.fresher_management.exception.AlreadyExistsException;
 import com.example.fresher_management.exception.ValidationException;
 import com.example.fresher_management.repository.UserRepository;
 import com.example.fresher_management.service.RoleService;
@@ -15,7 +12,6 @@ import com.example.fresher_management.service.UserService;
 import com.example.fresher_management.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -51,7 +47,7 @@ public class UserServiceImpl implements UserService {
         log.info("Saving user: {}", user);
         if (userRepository.findByUsername(user.getUsername()) != null) {
             log.error("User already exists with username: {}", user.getUsername());
-            throw new UserAlreadyExistsException("User already exists with username: " + user.getUsername());
+            throw new AlreadyExistsException("User already exists with username: " + user.getUsername());
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);

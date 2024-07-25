@@ -119,12 +119,12 @@ public class FresherServiceImpl implements FresherService {
         log.info("Deleted fresher with ID: {}", id);
     }
 
-    @Override
-    @Cacheable(value = "fresherScore", key = "#id")
-    public Float getScore(int id) {
-        log.info("Calculating score for fresher with ID: {}", id);
-        return resultService.getTotalScores(resultService.getResultsByFresher(id));
-    }
+//    @Override
+//    @Cacheable(value = "fresherScore", key = "#id")
+//    public Float getScore(int id) {
+//        log.info("Calculating score for fresher with ID: {}", id);
+//        return resultService.getTotalScores(resultService.getResultsByFresher(id));
+//    }
 
     @Override
     public List<Fresher> getSearchByName(String key, User user) {

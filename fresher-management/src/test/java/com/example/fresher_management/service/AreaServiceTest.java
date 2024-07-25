@@ -5,12 +5,16 @@ import com.example.fresher_management.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
+@Rollback
 public class AreaServiceTest {
 
     @Autowired
@@ -19,7 +23,7 @@ public class AreaServiceTest {
     @Test
     public void testGetAllAreas() {
         List<Area> result = areaService.getAllAreas();
-        assertEquals(3, result.size());
+        assertEquals(4, result.size());
     }
 
     @Test

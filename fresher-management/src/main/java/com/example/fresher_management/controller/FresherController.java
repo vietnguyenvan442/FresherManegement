@@ -78,11 +78,11 @@ public class FresherController {
         List<Fresher> freshers = fresherService.getSearchByLanguage(key, user);
         return ResponseEntity.ok(freshers);
     }
-
-    @GetMapping("/scores/{id}")
-    public ResponseEntity<Float> getScore(@PathVariable int id) {
-        log.info("Received request to get score for fresher with ID: {}", id);
-        Float score = fresherService.getScore(id);
-        return ResponseEntity.ok(score);
-    }
+//
+//    @GetMapping("/scores/{id}")
+//    public ResponseEntity<Float> getScore(@PathVariable int id) {
+//        log.info("Received request to get score for fresher with ID: {}", id);
+//        Float score = fresherService.getScore(id);
+//        return ResponseEntity.ok(score);
+//    }
 }

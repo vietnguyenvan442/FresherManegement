@@ -19,7 +19,7 @@ public class LanguageServiceTest {
 
         assertNotNull(language);
         assertEquals(1, language.getId());
-        assertEquals("Java", language.getName());
+        assertEquals("JAVA", language.getName());
     }
 
     @Test

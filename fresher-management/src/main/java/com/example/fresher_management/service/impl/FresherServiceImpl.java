@@ -1,7 +1,6 @@
 package com.example.fresher_management.service.impl;
 
 import com.example.fresher_management.dto.StatFresherScoreRangeOutputDto;
-import com.example.fresher_management.dto.StatisticInputDto;
 import com.example.fresher_management.entity.Fresher;
 import com.example.fresher_management.entity.Language;
 import com.example.fresher_management.entity.User;
@@ -9,7 +8,7 @@ import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.repository.FresherRepository;
 import com.example.fresher_management.service.*;
 import com.example.fresher_management.validate.EmailFormatValidate;
-import com.example.fresher_management.validate.FresherValidate;
+import com.example.fresher_management.validate.UserValidate;
 import com.example.fresher_management.validate.PhoneNumberFormatValidate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class FresherServiceImpl implements FresherService {
     private UserService userService;
 
     @Autowired
-    private FresherValidate fresherValidate;
+    private UserValidate userValidate;
 
     @Autowired
     private EmailFormatValidate emailFormatValidate;
@@ -168,12 +167,12 @@ public class FresherServiceImpl implements FresherService {
     }
 
     private void validateFresher(Fresher fresher) {
-        fresherValidate.validateMandatoryFields(fresher);
+        userValidate.validateMandatoryFields(fresher);
         emailFormatValidate.validateEmailFormat(fresher.getEmail());
         phoneNumberFormatValidate.validatePhoneNumberFormat(fresher.getSdt());
-        fresherValidate.validateUniqueCCCD(fresher.getCccd());
-        fresherValidate.validateUniqueUsername(fresher.getUsername());
-        fresherValidate.validateUniqueEmail(fresher.getEmail());
+        userValidate.validateUniqueCCCD(fresher.getCccd());
+        userValidate.validateUniqueUsername(fresher.getUsername());
+        userValidate.validateUniqueEmail(fresher.getEmail());
     }
 
     private Language getOrSaveLanguage(Language language) {
@@ -204,7 +203,7 @@ public class FresherServiceImpl implements FresherService {
         }
         if (fresherDetails.getEmail() != null && !fresher.getEmail().equals(fresherDetails.getEmail())) {
             emailFormatValidate.validateEmailFormat(fresherDetails.getEmail());
-            fresherValidate.validateUniqueEmail(fresherDetails.getEmail());
+            userValidate.validateUniqueEmail(fresherDetails.getEmail());
             fresher.setEmail(fresherDetails.getEmail());
         }
         if (fresherDetails.getSalary() >= 0 && fresher.getSalary() != fresherDetails.getSalary()) {

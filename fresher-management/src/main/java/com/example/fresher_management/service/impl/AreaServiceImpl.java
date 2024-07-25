@@ -42,9 +42,6 @@ public class AreaServiceImpl implements AreaService {
     @Transactional
     public Area findById(int id) {
         log.info("Fetching area with ID: {}", id);
-        return areaRepository.findById(id).orElseThrow(() -> {
-            log.error("Area not found with ID: {}", id);
-            return new ResourceNotFoundException("Area not found with id " + id);
-        });
+        return areaRepository.findById(id).orElse(null);
     }
 }

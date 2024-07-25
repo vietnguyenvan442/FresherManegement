@@ -1,61 +1,61 @@
 package com.example.fresher_management.validate.impl;
 
 import com.example.fresher_management.entity.Fresher;
+import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ValidationException;
 import com.example.fresher_management.repository.FresherRepository;
-import com.example.fresher_management.validate.FresherValidate;
+import com.example.fresher_management.repository.UserRepository;
+import com.example.fresher_management.validate.UserValidate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.regex.Pattern;
-
 @Component
-public class FresherValidateImpl implements FresherValidate {
+public class UserValidateImpl implements UserValidate {
 
     @Autowired
-    private FresherRepository fresherRepository;
+    private UserRepository userRepository;
 
-    public void validateMandatoryFields(Fresher fresher) {
-        if (fresher.getUsername() == null || fresher.getUsername().isEmpty()) {
+    public void validateMandatoryFields(User user) {
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
             throw new ValidationException("Username is required");
         }
-        if (fresher.getPassword() == null || fresher.getPassword().isEmpty()) {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
             throw new ValidationException("Password is required");
         }
-        if (fresher.getName() == null || fresher.getName().isEmpty()) {
+        if (user.getName() == null || user.getName().isEmpty()) {
             throw new ValidationException("Name is required");
         }
-        if (fresher.getDob() == null || fresher.getDob().isEmpty()) {
+        if (user.getDob() == null || user.getDob().isEmpty()) {
             throw new ValidationException("Date of birth is required");
         }
-        if (fresher.getCccd() == null || fresher.getCccd().isEmpty()) {
+        if (user.getCccd() == null || user.getCccd().isEmpty()) {
             throw new ValidationException("CCCD is required");
         }
-        if (fresher.getSdt() == null || fresher.getSdt().isEmpty()) {
+        if (user.getSdt() == null || user.getSdt().isEmpty()) {
             throw new ValidationException("Phone number is required");
         }
-        if (fresher.getAddress() == null || fresher.getAddress().isEmpty()) {
+        if (user.getAddress() == null || user.getAddress().isEmpty()) {
             throw new ValidationException("Address is required");
         }
-        if (fresher.getEmail() == null || fresher.getEmail().isEmpty()) {
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
             throw new ValidationException("Email is required");
         }
     }
 
     public void validateUniqueUsername(String username) {
-        if (fresherRepository.findByUsername(username).isPresent()) {
+        if (userRepository.findByUsername(username).isPresent()) {
             throw new ValidationException("Username already exists");
         }
     }
 
     public void validateUniqueCCCD(String cccd) {
-        if (fresherRepository.findByCccd(cccd).isPresent()) {
+        if (userRepository.findByCccd(cccd).isPresent()) {
             throw new ValidationException("CCCD already exists");
         }
     }
 
     public void validateUniqueEmail(String email) {
-        if (fresherRepository.findByEmail(email).isPresent()) {
+        if (userRepository.findByEmail(email).isPresent()) {
             throw new ValidationException("Email already exists");
         }
     }

@@ -18,10 +18,10 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<BearerToken> createAuthenticationToken(@RequestBody LoginDto user){
+    public ResponseEntity<BearerToken> createAuthenticationToken(@RequestBody LoginDto user) {
         log.info("Received login request for user: {}", user.getUsername());
         BearerToken token = userService.generateToken(user);
-        log.info("Generated token for user: {}",user.getUsername());
+        log.info("Generated token for user: {}", user.getUsername());
         return ResponseEntity.ok(token);
     }
 }

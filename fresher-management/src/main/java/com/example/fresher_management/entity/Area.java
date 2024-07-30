@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,20 +18,20 @@ import java.util.List;
 @Table(name = "area")
 public class Area implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private String name;
-	private String description;
+    @Column(nullable = false)
+    private String name;
+    private String description;
 
-	@JsonBackReference(value = "area-center")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "area", cascade = CascadeType.ALL)
-	private List<Center> listCenter;
-	
-	@Override
-	public String toString() {
-		return name;
-	}
+    @JsonBackReference(value = "area-center")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "area", cascade = CascadeType.ALL)
+    private List<Center> listCenter;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

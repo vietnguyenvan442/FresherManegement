@@ -68,7 +68,8 @@ public class ResultServiceImpl implements ResultService {
         Fresher fresher = fresherService.findById(resultDto.getFresher_id());
 
         List<Fresher> freshers = fresherService.getFreshers(user);
-        if (!freshers.contains(fresher)) throw new ForbiddenException("Manager does not have the right to add points to this fresher ID: " + fresher.getId());
+        if (!freshers.contains(fresher))
+            throw new ForbiddenException("Manager does not have the right to add points to this fresher ID: " + fresher.getId());
 
         List<Rank> ranks = rankService.findByFresherId(fresher.getId(), test.getRank().getId());
         if (!ranks.isEmpty()) throw new RankTestHasScoreException("The rank of this test already has points");
@@ -84,7 +85,7 @@ public class ResultServiceImpl implements ResultService {
         return resultRepository.save(result);
     }
 
-    protected LocalDateTime isValidLocalDateTime(String dateTimeString){
+    protected LocalDateTime isValidLocalDateTime(String dateTimeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         try {
             return LocalDateTime.parse(dateTimeString, formatter);

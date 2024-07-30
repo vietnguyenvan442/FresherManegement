@@ -19,24 +19,24 @@ import java.util.List;
 @Table(name = "course")
 public class Course implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private String name;
-	private String description;
+    @Column(nullable = false)
+    private String name;
+    private String description;
 
-	@Column(nullable = false)
-	private Date start_time;
-	private Date end_time;
-	
-	@JoinColumn(name = "center_id")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Center center;
+    @Column(nullable = false)
+    private Date start_time;
+    private Date end_time;
 
-	@JsonBackReference(value = "course-record")
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "course", cascade = CascadeType.ALL)
-	private List<Record> listRecord;
+    @JoinColumn(name = "center_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Center center;
+
+    @JsonBackReference(value = "course-record")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Record> listRecord;
 
 }

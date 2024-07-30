@@ -1,9 +1,7 @@
 package com.example.fresher_management.validate.impl;
 
-import com.example.fresher_management.entity.Fresher;
 import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ValidationException;
-import com.example.fresher_management.repository.FresherRepository;
 import com.example.fresher_management.repository.UserRepository;
 import com.example.fresher_management.validate.UserValidate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +41,7 @@ public class UserValidateImpl implements UserValidate {
     }
 
     public void validateUniqueUsername(String username) {
-        if (userRepository.findByUsername(username).isPresent()) {
+        if (userRepository.findByUsername(username) != null) {
             throw new ValidationException("Username already exists");
         }
     }

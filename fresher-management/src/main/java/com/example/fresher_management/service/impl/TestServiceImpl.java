@@ -25,7 +25,7 @@ public class TestServiceImpl implements TestService {
             return test;
         } else {
             log.error("Test not found for ID = {}", id);
-            throw  new ResourceNotFoundException("Test not found for ID = " + id);
+            throw new ResourceNotFoundException("Test not found for ID = " + id);
         }
     }
 }

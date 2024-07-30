@@ -1,6 +1,5 @@
 package com.example.fresher_management.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,24 +15,24 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "merger")
-public class Merger  implements Serializable {
+public class Merger implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private Date date;
+    @Column(nullable = false)
+    private Date date;
 
-	@JoinColumn(name = "center_first_id")
-	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
-	private Center center_first;
+    @JoinColumn(name = "center_first_id")
+    @ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
+    private Center center_first;
 
-	@JoinColumn(name = "center_second_id")
-	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
-	private Center center_second;
+    @JoinColumn(name = "center_second_id")
+    @ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
+    private Center center_second;
 
-	@JoinColumn(name = "center_new_id")
-	@ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
-	private Center center_new;
+    @JoinColumn(name = "center_new_id")
+    @ManyToOne(fetch = FetchType.LAZY) // Change FetchType.EAGER to FetchType.LAZY
+    private Center center_new;
 }

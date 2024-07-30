@@ -1,13 +1,11 @@
 package com.example.fresher_management.repository;
 
-import com.example.fresher_management.dto.StatFresherScoreRangeOutputDto;
 import com.example.fresher_management.entity.Fresher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 

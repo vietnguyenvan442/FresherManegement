@@ -8,8 +8,8 @@ import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.repository.FresherRepository;
 import com.example.fresher_management.service.*;
 import com.example.fresher_management.validate.EmailFormatValidate;
-import com.example.fresher_management.validate.UserValidate;
 import com.example.fresher_management.validate.PhoneNumberFormatValidate;
+import com.example.fresher_management.validate.UserValidate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -154,8 +154,8 @@ public class FresherServiceImpl implements FresherService {
 
         for (Object[] result : results) {
             String scoreRange = (String) result[0];
-            Long count = ((Number) result[1]).longValue();
-            resultMap.put(scoreRange, count.intValue());
+            long count = ((Number) result[1]).longValue();
+            resultMap.put(scoreRange, (int) count);
         }
 
         List<StatFresherScoreRangeOutputDto> dtoList = new ArrayList<>();

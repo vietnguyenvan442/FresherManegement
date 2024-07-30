@@ -6,7 +6,6 @@ import com.example.fresher_management.repository.RoleRepository;
 import com.example.fresher_management.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

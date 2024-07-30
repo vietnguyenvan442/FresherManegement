@@ -16,28 +16,28 @@ import java.sql.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "record")
-public class Record  implements Serializable {
+public class Record implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private Date start_time;
-	private Date end_time;
+    @Column(nullable = false)
+    private Date start_time;
+    private Date end_time;
 
-	@JsonIgnore
-	@JoinColumn(name = "course_id")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Course course;
+    @JsonIgnore
+    @JoinColumn(name = "course_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Course course;
 
-	@JsonIgnore
-	@JoinColumn(name = "fresher_id")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Fresher fresher;
+    @JsonIgnore
+    @JoinColumn(name = "fresher_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Fresher fresher;
 
-	@JsonIgnore
-	@JoinColumn(name = "role_id")
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	private Role role;
+    @JsonIgnore
+    @JoinColumn(name = "role_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private Role role;
 }

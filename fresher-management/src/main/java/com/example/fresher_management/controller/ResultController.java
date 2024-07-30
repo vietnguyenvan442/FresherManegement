@@ -22,7 +22,7 @@ public class ResultController {
 
     @PostMapping("")
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
-    public ResponseEntity<Result> add(@RequestBody ResultDto resultDto, @RequestHeader("Authorization") String token){
+    public ResponseEntity<Result> add(@RequestBody ResultDto resultDto, @RequestHeader("Authorization") String token) {
         User user = userService.getUserByToken(token);
         return ResponseEntity.ok(resultService.save(resultDto, user));
     }

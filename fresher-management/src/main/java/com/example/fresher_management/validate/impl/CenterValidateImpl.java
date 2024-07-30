@@ -26,10 +26,10 @@ public class CenterValidateImpl implements CenterValidate {
         if (center.getEmail() == null || center.getEmail().isEmpty()) {
             throw new ValidationException("Email is required");
         }
-        if (center.getArea() == null){
+        if (center.getArea() == null) {
             throw new ValidationException("Area is required");
         }
-        if (center.getManager() == null){
+        if (center.getManager() == null) {
             throw new ValidationException("Manager s'Center is required");
         }
     }
@@ -43,7 +43,7 @@ public class CenterValidateImpl implements CenterValidate {
 
     @Override
     public void validateUniquePhongNumber(String sdt) {
-        if (centerRepository.findBySdt(sdt).isPresent()){
+        if (centerRepository.findBySdt(sdt).isPresent()) {
             throw new ValidationException("Sdt already exists");
         }
     }

@@ -1,8 +1,8 @@
 package com.example.fresher_management.service.impl;
 
+import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.dto.StatFresherScoreRangeOutputDto;
 import com.example.fresher_management.dto.StatisticInputDto;
-import com.example.fresher_management.dto.StatCenterOutputDto;
 import com.example.fresher_management.entity.User;
 import com.example.fresher_management.exception.ForbiddenException;
 import com.example.fresher_management.service.CenterService;

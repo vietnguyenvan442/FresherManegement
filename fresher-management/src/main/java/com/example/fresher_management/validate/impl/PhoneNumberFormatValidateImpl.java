@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 @Component
 public class PhoneNumberFormatValidateImpl implements PhoneNumberFormatValidate {
     private static final String PHONE_REGEX = "^\\d{10}$";
+
     @Override
     public void validatePhoneNumberFormat(String phoneNumber) {
         if (!Pattern.matches(PHONE_REGEX, phoneNumber)) {

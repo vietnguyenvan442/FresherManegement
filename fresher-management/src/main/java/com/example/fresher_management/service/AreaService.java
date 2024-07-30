@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface AreaService {
     public List<Area> getAllAreas();
+
     public Area save(Area area);
+
     public Area findById(int id);
 }

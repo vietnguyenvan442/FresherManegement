@@ -1,7 +1,6 @@
 package com.example.fresher_management.service.impl;
 
 import com.example.fresher_management.entity.Area;
-import com.example.fresher_management.exception.ResourceNotFoundException;
 import com.example.fresher_management.exception.AlreadyExistsException;
 import com.example.fresher_management.repository.AreaRepository;
 import com.example.fresher_management.service.AreaService;

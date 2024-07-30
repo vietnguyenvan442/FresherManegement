@@ -1,9 +1,9 @@
 package com.example.fresher_management.config;
 
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.cache.Caching;

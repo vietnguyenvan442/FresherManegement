@@ -15,16 +15,16 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "`rank`")
-public class Rank  implements Serializable {
+public class Rank implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private String name;
-	private String description;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "rank", cascade = CascadeType.ALL)
-	private List<Test> listTest;
+    @Column(nullable = false)
+    private String name;
+    private String description;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rank", cascade = CascadeType.ALL)
+    private List<Test> listTest;
 }

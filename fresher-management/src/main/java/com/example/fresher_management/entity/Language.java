@@ -16,22 +16,22 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "language")
-public class Language  implements Serializable {
+public class Language implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(nullable = false)
-	private String name;
-	private String description;
+    @Column(nullable = false)
+    private String name;
+    private String description;
 
-	@JsonBackReference(value = "language-fresher")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "language", cascade = CascadeType.ALL)
-	private List<Fresher> listFresher;
-	
-	@Override
-	public String toString() {
-		return name;
-	}
+    @JsonBackReference(value = "language-fresher")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "language", cascade = CascadeType.ALL)
+    private List<Fresher> listFresher;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
